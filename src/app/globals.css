@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-poppins text-gray-800;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: #C9A227;
+  }
+
+  .bg-primary {
+    background-color: #1B4D2E;
+  }
+
+  .bg-primary-dark {
+    background-color: #0a2617;
+  }
+}
