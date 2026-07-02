@@ -620,9 +620,11 @@ function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
     <div className="min-h-screen bg-[#0a2617] flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-8">
         <div className="flex justify-center mb-6">
-          <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-white font-bold text-lg">RJB</span>
-          </div>
+          <img 
+            src="/logo.jpg" 
+            alt="Recanto Jardim Botânico" 
+            className="w-14 h-14 rounded-full object-cover border border-gray-200 shadow-sm"
+          />
         </div>
         <h1 className="text-center font-bold text-gray-900 text-xl mb-2">Painel Admin</h1>
         <p className="text-center text-gray-500 text-sm mb-6">
@@ -681,9 +683,11 @@ function AdminPanel({ token, onLogout }: { token: string; onLogout: () => void }
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-xs">RJB</span>
-              </div>
+              <img 
+                src="/logo.jpg" 
+                alt="Recanto Jardim Botânico" 
+                className="w-8 h-8 rounded-full object-cover border border-white/20 flex-shrink-0"
+              />
               <span className="font-semibold text-sm">Admin</span>
             </div>
             <button

@@ -42,9 +42,11 @@ export default function Footer() {
               className="flex items-center gap-3 text-left focus:outline-none group"
               aria-label="Logo Recanto Jardim Botânico"
             >
-              <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors">
-                <span className="text-white font-bold text-xs">RJB</span>
-              </div>
+              <img 
+                src="/logo.jpg" 
+                alt="Recanto Jardim Botânico" 
+                className="w-10 h-10 rounded-full object-cover border border-white/20 flex-shrink-0 group-hover:opacity-80 transition-opacity"
+              />
               <span className="font-semibold text-sm leading-tight">
                 Recanto<br />Jardim Botânico
               </span>

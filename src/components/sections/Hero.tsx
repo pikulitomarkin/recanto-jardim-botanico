@@ -20,9 +20,11 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl mx-auto animate-fadeUp">
         {/* Logo */}
-        <div className="w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-[#C9A227] mb-6 bg-[#1B4D2E] flex items-center justify-center shadow-2xl">
-          <span className="text-white font-bold text-2xl">RJB</span>
-        </div>
+        <img 
+          src="/logo.jpg" 
+          alt="Recanto Jardim Botânico" 
+          className="w-[90px] h-[90px] rounded-full object-cover border-2 border-[#C9A227] mb-6 shadow-2xl"
+        />
 
         {/* Location badge */}
         <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest mb-5 px-3 py-1 rounded-full border border-[#C9A227]/40" style={{ color: '#C9A227' }}>

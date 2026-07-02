@@ -34,9 +34,11 @@ export default function Contato() {
           {/* Left: logo / tagline */}
           <div>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-lg">RJB</span>
-              </div>
+              <img 
+                src="/logo.jpg" 
+                alt="Recanto Jardim Botânico" 
+                className="w-16 h-16 rounded-full object-cover border border-white/20 flex-shrink-0"
+              />
               <div>
                 <h3 className="text-white font-bold text-xl leading-tight">
                   Recanto Jardim Botânico

@@ -21,11 +21,12 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#061810]/95 backdrop-blur-sm border-b border-white/10 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <a href="#" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-xs text-center leading-tight">RJB</span>
-            </div>
+            <img 
+              src="/logo.jpg" 
+              alt="Recanto Jardim Botânico" 
+              className="w-10 h-10 rounded-full object-cover border border-white/20 flex-shrink-0"
+            />
             <span className="font-semibold text-white text-sm leading-tight hidden sm:block">
               Recanto<br />Jardim Botânico
             </span>
