@@ -18,15 +18,15 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/97 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#061810]/95 backdrop-blur-sm border-b border-white/10 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-primary flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-xs text-center leading-tight">RJB</span>
             </div>
-            <span className="font-semibold text-gray-900 text-sm leading-tight hidden sm:block">
+            <span className="font-semibold text-white text-sm leading-tight hidden sm:block">
               Recanto<br />Jardim Botânico
             </span>
           </a>
@@ -37,7 +37,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-gray-600 hover:text-primary transition-colors font-medium"
+                className="text-sm text-white/80 hover:text-white transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -61,7 +61,7 @@ export default function Header() {
             {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors"
+              className="lg:hidden p-2 rounded-md text-white hover:text-white/80 hover:bg-white/10 transition-colors"
               aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -82,13 +82,13 @@ export default function Header() {
           menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <nav className="px-4 pb-4 pt-2 bg-white border-t border-gray-100 flex flex-col gap-1">
+        <nav className="px-4 pb-4 pt-2 bg-[#061810] border-t border-white/10 flex flex-col gap-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-sm text-gray-700 hover:text-primary hover:bg-gray-50 px-3 py-2 rounded-md transition-colors font-medium"
+              className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md transition-colors font-medium"
             >
               {link.label}
             </a>
