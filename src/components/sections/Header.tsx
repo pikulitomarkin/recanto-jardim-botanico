@@ -23,7 +23,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-3">
             <img 
-              src="/logo.jpg" 
+              src="/logo.png" 
               alt="Recanto Jardim Botânico" 
               className="w-10 h-10 rounded-full object-cover border border-white/20 flex-shrink-0"
             />

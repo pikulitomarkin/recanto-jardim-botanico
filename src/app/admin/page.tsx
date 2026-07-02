@@ -621,7 +621,7 @@ function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-8">
         <div className="flex justify-center mb-6">
           <img 
-            src="/logo.jpg" 
+            src="/logo.png" 
             alt="Recanto Jardim Botânico" 
             className="w-14 h-14 rounded-full object-cover border border-gray-200 shadow-sm"
           />
@@ -684,7 +684,7 @@ function AdminPanel({ token, onLogout }: { token: string; onLogout: () => void }
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-3">
               <img 
-                src="/logo.jpg" 
+                src="/logo.png" 
                 alt="Recanto Jardim Botânico" 
                 className="w-8 h-8 rounded-full object-cover border border-white/20 flex-shrink-0"
               />

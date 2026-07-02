@@ -43,7 +43,7 @@ export default function Footer() {
               aria-label="Logo Recanto Jardim Botânico"
             >
               <img 
-                src="/logo.jpg" 
+                src="/logo.png" 
                 alt="Recanto Jardim Botânico" 
                 className="w-10 h-10 rounded-full object-cover border border-white/20 flex-shrink-0 group-hover:opacity-80 transition-opacity"
               />

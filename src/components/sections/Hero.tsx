@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl mx-auto animate-fadeUp">
         {/* Logo */}
         <img 
-          src="/logo.jpg" 
+          src="/logo.png" 
           alt="Recanto Jardim Botânico" 
           className="w-[90px] h-[90px] rounded-full object-cover border-2 border-[#C9A227] mb-6 shadow-2xl"
         />

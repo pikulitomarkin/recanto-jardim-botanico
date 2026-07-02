@@ -35,7 +35,7 @@ export default function Contato() {
           <div>
             <div className="flex items-center gap-4 mb-6">
               <img 
-                src="/logo.jpg" 
+                src="/logo.png" 
                 alt="Recanto Jardim Botânico" 
                 className="w-16 h-16 rounded-full object-cover border border-white/20 flex-shrink-0"
               />
