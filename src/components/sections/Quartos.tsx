@@ -24,6 +24,11 @@ export default function Quartos() {
       .catch(() => setLoading(false))
   }, [])
 
+  // Flatten all rooms from all price groups and sort by price ascending
+  const allRoomsSorted = priceGroups
+    .flatMap((group) => group.rooms)
+    .sort((a, b) => a.price - b.price)
+
   return (
     <section id="quartos" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,25 +52,15 @@ export default function Quartos() {
           </p>
         </div>
 
-        {/* Content */}
+        {/* 3-column grid sorted by price: cheapest first, most expensive last */}
         {loading ? (
           <div className="flex justify-center py-16">
             <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="space-y-12">
-            {priceGroups.map((group) => (
-              <div key={group.price}>
-                <div className="flex items-center gap-3 mb-6">
-                  <h3 className="text-xl font-semibold text-gray-800">{group.label}</h3>
-                  <div className="flex-1 h-px bg-gray-200" />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {group.rooms.map((room) => (
-                    <RoomCard key={room.id} room={room} />
-                  ))}
-                </div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allRoomsSorted.map((room) => (
+              <RoomCard key={room.id} room={room} />
             ))}
           </div>
         )}
