@@ -32,7 +32,7 @@ function clearToken() {
 
 const STATUS_LABELS: Record<RoomStatus, string> = {
   available: 'Disponível',
-  occupied: 'Ocupado',
+  occupied: 'Alugado',
   reserved: 'Reservado',
 }
 
@@ -65,6 +65,9 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
     driveId: '',
     driveUrl: '',
     whatsappMsg: '',
+    description: '',
+    videoUrl: '',
+    highlight: '',
     ...room,
   })
 
@@ -85,6 +88,9 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
       whatsappMsg:
         form.whatsappMsg ||
         `Olá! Tenho interesse no ${form.name} (R$${form.price}/mês). Poderia me dar mais informações?`,
+      description: form.description ?? '',
+      videoUrl: form.videoUrl ?? '',
+      highlight: (form.highlight ?? '') as 'novo' | 'reformado' | '',
     }
     onSave(r)
   }
@@ -92,7 +98,7 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
   const previewUrl = form.driveUrl ? getDriveThumbnailUrl(form.driveUrl, 400) : null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 animate-fadeIn">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="font-bold text-gray-900 text-lg">
@@ -116,27 +122,65 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
             />
           </div>
 
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Preço (R$)</label>
+              <input
+                type="number"
+                value={form.price ?? ''}
+                onChange={(e) => update('price', Number(e.target.value))}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Status</label>
+              <select
+                value={form.status}
+                onChange={(e) => update('status', e.target.value as RoomStatus)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+              >
+                <option value="available">Disponível</option>
+                <option value="occupied">Alugado</option>
+                <option value="reserved">Reservado</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Destaque</label>
+              <select
+                value={form.highlight ?? ''}
+                onChange={(e) => update('highlight', e.target.value as 'novo' | 'reformado' | '')}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+              >
+                <option value="">Nenhum</option>
+                <option value="novo">Novo</option>
+                <option value="reformado">Reformado</option>
+              </select>
+            </div>
+          </div>
+
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Preço (R$)</label>
-            <input
-              type="number"
-              value={form.price ?? ''}
-              onChange={(e) => update('price', Number(e.target.value))}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Descrição</label>
+            <textarea
+              value={form.description ?? ''}
+              onChange={(e) => update('description', e.target.value)}
+              rows={2}
+              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+              placeholder="Descrição curta do quarto..."
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Status</label>
-            <select
-              value={form.status}
-              onChange={(e) => update('status', e.target.value as RoomStatus)}
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Link do Vídeo (YouTube / Drive)</label>
+            <input
+              value={form.videoUrl ?? ''}
+              onChange={(e) => update('videoUrl', e.target.value)}
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-            >
-              <option value="available">Disponível</option>
-              <option value="occupied">Ocupado</option>
-              <option value="reserved">Reservado</option>
-            </select>
+              placeholder="https://www.youtube.com/watch?v=..."
+            />
           </div>
 
           <div>
@@ -159,13 +203,14 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
 
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">
-              Mensagem WhatsApp
+              Mensagem WhatsApp customizada
             </label>
             <textarea
               value={form.whatsappMsg ?? ''}
               onChange={(e) => update('whatsappMsg', e.target.value)}
-              rows={3}
+              rows={2}
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+              placeholder="Deixe em branco para usar a mensagem padrão..."
             />
           </div>
         </div>
@@ -542,7 +587,7 @@ function GeralTab({ token }: { token: string }) {
             value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-            placeholder="5561999999999"
+            placeholder="5541999999999"
           />
         </div>
 

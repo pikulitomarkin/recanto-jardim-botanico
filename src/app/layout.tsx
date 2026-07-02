@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import Script from 'next/script'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 import './globals.css'
 
 const poppins = Poppins({
@@ -9,9 +11,12 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Recanto Jardim Botânico — Quartos para Alugar em Brasília',
-  description: 'Quartos confortáveis próximos ao Jardim Botânico de Brasília. A partir de R$1.100/mês com água, luz e internet inclusos.',
-  keywords: 'quarto aluguel brasília, jardim botânico, república, pensionato',
+  title: 'Recanto Jardim Botânico — Quartos para Alugar em Curitiba',
+  description: 'Quartos confortáveis mobiliados para alugar próximos ao Jardim Botânico de Curitiba. A partir de R$1.100/mês com água, luz e internet inclusos.',
+  keywords: 'quarto para alugar em Curitiba, quarto para alugar, aluguel de quarto Curitiba, moradia compartilhada Curitiba, quarto mobiliado Curitiba, quarto individual Curitiba, quarto para estudantes Curitiba, quarto para trabalhadores Curitiba, aluguel Jardim Botânico Curitiba, quarto próximo ao Jardim Botânico',
+  verification: {
+    google: 'google-site-verification-placeholder-code',
+  }
 }
 
 export default function RootLayout({
@@ -21,7 +26,41 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={poppins.variable}>
-      <body className="font-poppins antialiased">{children}</body>
+      <head>
+        {/* Google Analytics (gtag.js) Placeholder */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TRACKING-ID"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TRACKING-ID');
+          `}
+        </Script>
+
+        {/* Meta Pixel Placeholder */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', 'PIXEL-ID-PLACEHOLDER');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+      </head>
+      <body className="font-poppins antialiased">
+        {children}
+        <FloatingWhatsApp />
+      </body>
     </html>
   )
 }

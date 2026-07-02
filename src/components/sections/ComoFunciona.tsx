@@ -1,30 +1,40 @@
-const WHATSAPP_URL = 'https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
+const WHATSAPP_URL = 'https://wa.me/5541999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
 
 const STEPS = [
   {
     number: 1,
-    title: 'Contato via WhatsApp',
-    description: 'Fale conosco pelo WhatsApp e tire suas dúvidas com agilidade.',
+    title: 'Contato',
+    description: 'Fale conosco pelo WhatsApp e tire suas dúvidas.',
   },
   {
     number: 2,
-    title: 'Veja as Fotos',
-    description: 'Enviamos fotos reais dos quartos disponíveis para você escolher.',
+    title: 'Fotos e Vídeos',
+    description: 'Enviamos fotos e vídeos reais dos quartos disponíveis.',
   },
   {
     number: 3,
-    title: 'Agende a Visita',
-    description: 'Venha conhecer o espaço pessoalmente e sentir o ambiente.',
+    title: 'Normas e Regras',
+    description: 'Conheça nossas regras para uma convivência harmoniosa.',
   },
   {
     number: 4,
-    title: 'Documentação',
-    description: 'Assinamos o contrato e organizamos toda a documentação necessária.',
+    title: 'Agende a Visita',
+    description: 'Venha conhecer o espaço e escolher seu quarto ideal.',
   },
   {
     number: 5,
+    title: 'Documentação',
+    description: 'Organizamos o contrato e a documentação básica.',
+  },
+  {
+    number: 6,
+    title: 'Reserva',
+    description: 'Garanta sua vaga com o pagamento antecipado da reserva.',
+  },
+  {
+    number: 7,
     title: 'Entrada',
-    description: 'Você já pode se mudar e aproveitar seu novo lar!',
+    description: 'Pegue suas chaves, faça sua mudança e aproveite seu lar!',
   },
 ]
 

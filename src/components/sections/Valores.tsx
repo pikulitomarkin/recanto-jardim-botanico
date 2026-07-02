@@ -17,14 +17,26 @@ const PRICE_GROUPS = [
   {
     price: 1100,
     label: 'Quartos Standard',
-    description: '3 unidades disponíveis com estrutura completa.',
+    description: 'Quarto individual mobiliado completo.',
     highlight: false,
   },
   {
     price: 1200,
     label: 'Quartos Premium',
-    description: '2 unidades com maior área e acabamento superior.',
+    description: 'Quarto com escrivaninha e mais amplo.',
+    highlight: false,
+  },
+  {
+    price: 1300,
+    label: 'Quartos Superior',
+    description: 'Quarto reformado com móveis planejados.',
     highlight: true,
+  },
+  {
+    price: 1400,
+    label: 'Quartos Master',
+    description: 'Suíte master com banheiro privativo.',
+    highlight: false,
   },
 ]
 
@@ -42,25 +54,28 @@ export default function Valores() {
         </div>
 
         {/* Price cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14 max-w-5xl mx-auto">
           {PRICE_GROUPS.map((group) => (
             <div
               key={group.price}
-              className={`rounded-2xl p-6 border flex flex-col ${
+              className={`rounded-2xl p-6 border flex flex-col justify-between ${
                 group.highlight
-                  ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
+                  ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20 animate-pulse'
                   : 'bg-white text-gray-900 border-gray-200 shadow-sm'
               }`}
+              style={{ animationDuration: '4s' }}
             >
-              <p className={`text-sm font-semibold mb-1 ${group.highlight ? 'text-white/80' : 'text-gray-500'}`}>
-                {group.label}
-              </p>
-              <p className="text-4xl font-bold mb-1">
-                R${group.price.toLocaleString('pt-BR')}
-                <span className={`text-sm font-normal ml-1 ${group.highlight ? 'text-white/70' : 'text-gray-400'}`}>
-                  /mês
-                </span>
-              </p>
+              <div>
+                <p className={`text-sm font-semibold mb-1 ${group.highlight ? 'text-white/80' : 'text-gray-500'}`}>
+                  {group.label}
+                </p>
+                <p className="text-3xl font-bold mb-1">
+                  R${group.price.toLocaleString('pt-BR')}
+                  <span className={`text-sm font-normal ml-1 ${group.highlight ? 'text-white/70' : 'text-gray-400'}`}>
+                    /mês
+                  </span>
+                </p>
+              </div>
               <p className={`text-sm mt-3 ${group.highlight ? 'text-white/80' : 'text-gray-500'}`}>
                 {group.description}
               </p>
@@ -109,6 +124,52 @@ export default function Valores() {
               <span className="font-semibold">Caução:</span> equivalente a 1 mês de aluguel, devolvido ao final do contrato.
               Contas individuais (gás) são pagas diretamente pelo inquilino.
             </p>
+          </div>
+        </div>
+
+        {/* Parking and contracting details card */}
+        <div className="max-w-3xl mx-auto mt-8 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden p-6 sm:p-8">
+          <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6 flex items-center gap-2">
+            <span>🚗</span> Custos e Condições Adicionais
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
+            <div className="bg-gray-50/50 p-5 rounded-xl border border-gray-100">
+              <p className="font-bold text-gray-900 mb-3 flex items-center gap-1.5">
+                <span>🚘</span> Estacionamento
+              </p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-center justify-between">
+                  <span>Vaga para Carro:</span>
+                  <span className="font-semibold text-gray-900">R$ 150 / mês</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span>Vaga para Moto:</span>
+                  <span className="font-semibold text-gray-900">R$ 80 / mês</span>
+                </li>
+              </ul>
+              <p className="text-[11px] text-gray-400 mt-3 italic">
+                * Sujeito à verificação de disponibilidade de vagas no pátio.
+              </p>
+            </div>
+            <div className="bg-gray-50/50 p-5 rounded-xl border border-gray-100">
+              <p className="font-bold text-gray-900 mb-3 flex items-center gap-1.5">
+                <span>📝</span> Condições Gerais
+              </p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span><span className="font-semibold text-gray-800">Taxa Única de Ingresso:</span> R$ 150 pagos na assinatura para despesas de adesão/vistoria.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span><span className="font-semibold text-gray-800">Reserva para início do mês:</span> possibilidade de reservar o quarto pagando taxa de reserva proporcional.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span><span className="font-semibold text-gray-800">Permanência Mínima:</span> contrato mínimo de 3 meses.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

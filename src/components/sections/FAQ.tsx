@@ -3,44 +3,41 @@
 import { useState } from 'react'
 
 const WHATSAPP_URL =
-  'https://wa.me/5561999999999?text=Olá!%20Tenho%20dúvidas%20sobre%20os%20quartos%20do%20Recanto%20Jardim%20Botânico.'
+  'https://wa.me/5541999999999?text=Olá!%20Tenho%20dúvidas%20sobre%20os%20quartos%20do%20Recanto%20Jardim%20Botânico.'
 
 const FAQ_ITEMS = [
   {
-    question: 'Quais documentos são necessários?',
-    answer: 'RG ou CPF, comprovante de renda e referências pessoais.',
+    question: 'Aceita casal?',
+    answer: 'Não. Todos os nossos quartos são estritamente para uso individual, visando garantir a tranquilidade e privacidade de todos os moradores.',
   },
   {
-    question: 'Tem contrato formal?',
-    answer:
-      'Sim, contrato de locação registrado em cartório com duração mínima de 3 meses.',
+    question: 'Aceita visitantes?',
+    answer: 'Sim, visitas diurnas são permitidas nas áreas comuns. Contudo, para preservar o espaço e a privacidade coletiva, não é permitida a pernoite de visitantes.',
   },
   {
-    question: 'Qual o prazo mínimo de estadia?',
-    answer: 'O prazo mínimo é de 3 meses, com renovação automática.',
+    question: 'Como funciona a taxa?',
+    answer: 'Cobramos uma taxa única de ingresso (adesão/limpeza) no ato da contratação. Não cobramos taxas adicionais de condomínio ou manutenção.',
   },
   {
-    question: 'Inclui internet?',
-    answer: 'Sim! Wi-Fi fibra óptica de alta velocidade incluso no valor mensal.',
+    question: 'Como faço a reserva?',
+    answer: 'A reserva é feita diretamente com a gente pelo WhatsApp, mediante o pagamento antecipado do valor de reserva para segurar a vaga.',
   },
   {
-    question: 'Tem vaga de garagem?',
-    answer:
-      'Temos vagas disponíveis. Consulte disponibilidade ao entrar em contato.',
+    question: 'Os banheiros são compartilhados?',
+    answer: 'Sim, possuímos banheiros compartilhados em número suficiente para todos os moradores, higienizados frequentemente e mantidos organizados.',
   },
   {
-    question: 'Aceitam pets?',
-    answer:
-      'Analisamos cada caso individualmente. Entre em contato para conversar.',
+    question: 'O quarto é individual?',
+    answer: 'Sim, todos os nossos quartos são totalmente individuais, mobiliados e privativos para que você possa estudar ou trabalhar em paz.',
   },
   {
-    question: 'Como é feito o pagamento?',
-    answer: 'Boleto bancário ou PIX até o 5º dia útil de cada mês.',
+    question: 'Existe garagem?',
+    answer: 'Sim, possuímos estacionamento para carros e motos no local. Consulte valores adicionais e disponibilidade ao falar conosco.',
   },
   {
-    question: 'Posso visitar antes de alugar?',
-    answer: 'Sim! Agende uma visita pelo WhatsApp — respondemos rapidamente.',
-  },
+    question: 'Qual o tempo mínimo de permanência?',
+    answer: 'O tempo mínimo estipulado em contrato de locação é de 3 meses, com renovação automática após esse período.',
+  }
 ]
 
 function ChevronIcon({ open }: { open: boolean }) {

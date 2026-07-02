@@ -1,4 +1,4 @@
-const WHATSAPP_URL = 'https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
+const WHATSAPP_URL = 'https://wa.me/5541999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
 
 export default function Hero() {
   return (
@@ -31,7 +31,7 @@ export default function Hero() {
           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
           </svg>
-          Jardim Botânico · Brasília
+          Jardim Botânico · Curitiba
         </span>
 
         {/* Heading */}
@@ -42,7 +42,7 @@ export default function Hero() {
 
         {/* Subheading */}
         <p className="text-base sm:text-lg text-white/70 max-w-xl mb-8 leading-relaxed">
-          Quartos confortáveis próximos ao Jardim Botânico de Brasília.{' '}
+          Quartos confortáveis próximos ao Jardim Botânico de Curitiba.{' '}
           <span className="text-white/90 font-medium">A partir de R$1.100/mês</span> com água, luz e internet inclusos.
         </p>
 

@@ -9,6 +9,9 @@ export interface Room {
   driveId: string
   driveUrl: string
   whatsappMsg: string
+  description: string
+  videoUrl: string
+  highlight: 'novo' | 'reformado' | ''
 }
 
 export interface Facility {

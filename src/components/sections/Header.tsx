@@ -3,16 +3,16 @@
 import { useState } from 'react'
 
 const NAV_LINKS = [
-  { label: 'Quartos', href: '#quartos' },
-  { label: 'Estrutura', href: '#estrutura' },
-  { label: 'Valores', href: '#valores' },
-  { label: 'Como Funciona', href: '#como-funciona' },
-  { label: 'Regras', href: '#regras' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Quartos', href: '/#quartos' },
+  { label: 'Estrutura', href: '/#estrutura' },
+  { label: 'Valores', href: '/#valores' },
+  { label: 'Como Funciona', href: '/#como-funciona' },
+  { label: 'Regras', href: '/regras' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Contato', href: '/#contato' },
 ]
 
-const WHATSAPP_URL = 'https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
+const WHATSAPP_URL = 'https://wa.me/5541999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)

@@ -3,13 +3,13 @@
 import { useRef } from 'react'
 
 const NAV_LINKS = [
-  { label: 'Quartos', href: '#quartos' },
-  { label: 'Estrutura', href: '#estrutura' },
-  { label: 'Valores', href: '#valores' },
-  { label: 'Como Funciona', href: '#como-funciona' },
-  { label: 'Regras', href: '#regras' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Quartos', href: '/#quartos' },
+  { label: 'Estrutura', href: '/#estrutura' },
+  { label: 'Valores', href: '/#valores' },
+  { label: 'Como Funciona', href: '/#como-funciona' },
+  { label: 'Regras', href: '/regras' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Contato', href: '/#contato' },
 ]
 
 export default function Footer() {
@@ -52,7 +52,7 @@ export default function Footer() {
               </span>
             </button>
             <p className="text-white/40 text-xs mt-4 leading-relaxed">
-              Jardim Botânico · Brasília · DF
+              Jardim Botânico · Curitiba · PR
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-8 border-t border-white/10 text-center">
           <p className="text-white/20 text-xs">
-            Jardim Botânico · Brasília · DF
+            Jardim Botânico · Curitiba · PR
           </p>
         </div>
       </div>

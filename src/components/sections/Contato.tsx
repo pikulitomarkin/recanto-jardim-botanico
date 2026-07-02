@@ -1,5 +1,5 @@
 const WHATSAPP_URL =
-  'https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
+  'https://wa.me/5541999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
 
 function WhatsAppIcon({ size = 5 }: { size?: number }) {
   return (
@@ -43,24 +43,38 @@ export default function Contato() {
                 <h3 className="text-white font-bold text-xl leading-tight">
                   Recanto Jardim Botânico
                 </h3>
-                <p className="text-white/60 text-sm">Brasília · DF</p>
+                <p className="text-white/60 text-sm">Curitiba · PR</p>
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Pronto para dar o próximo passo?
             </h2>
-            <p className="text-white/70 text-base leading-relaxed mb-8">
+            <p className="text-white/70 text-base leading-relaxed mb-6">
               Entre em contato agora mesmo. Respondemos rapidamente e agendamos sua visita sem compromisso.
             </p>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full transition-colors shadow-lg shadow-green-900/30 text-base"
+              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full transition-colors shadow-lg shadow-green-900/30 text-base mb-8"
             >
               <WhatsAppIcon size={5} />
               Falar pelo WhatsApp
             </a>
+
+            {/* Google Maps Integration */}
+            <div className="rounded-2xl overflow-hidden border border-white/10 h-[220px] shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.812239474776!2d-49.244304624795325!3d-25.444583877553535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce4fa4c66ff73%3A0x8e8a609d6f30a2!2sJardim%20Bot%C3%A2nico%20de%20Curitiba!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localização no Google Maps"
+              />
+            </div>
           </div>
 
           {/* Right: contact info */}
@@ -77,7 +91,7 @@ export default function Contato() {
                   rel="noopener noreferrer"
                   className="text-white font-semibold text-base hover:text-gold transition-colors"
                 >
-                  (61) 99999-9999
+                  (41) 99999-9999
                 </a>
                 <p className="text-white/50 text-xs mt-0.5">Resposta rápida · Seg a Dom</p>
               </div>
@@ -108,9 +122,9 @@ export default function Contato() {
               <div>
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">Endereço</p>
                 <p className="text-white font-semibold text-base">
-                  SHCES Qd 1009 Conj C
+                  Av. Prefeito Omar Sabbag, 1000
                 </p>
-                <p className="text-white/70 text-sm">Asa Sul, Brasília-DF</p>
+                <p className="text-white/70 text-sm">Jardim Botânico, Curitiba-PR</p>
               </div>
             </div>
           </div>
