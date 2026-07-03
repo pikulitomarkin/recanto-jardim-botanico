@@ -1,5 +1,5 @@
 const WHATSAPP_URL =
-  'https://wa.me/5541999999999?text=Olá!%20Tenho%20interesse%20em%20alugar%20um%20quarto%20no%20Recanto%20Jardim%20Botânico.'
+  'https://wa.me/5541999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20ao%20Recanto%20Jardim%20Bot%C3%A2nico.'
 
 function WhatsAppIcon({ size = 5 }: { size?: number }) {
   return (
@@ -122,9 +122,21 @@ export default function Contato() {
               <div>
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">Endereço</p>
                 <p className="text-white font-semibold text-base">
-                  Av. Prefeito Omar Sabbag, 1000
+                  Av. Comendador Franco, 553
                 </p>
-                <p className="text-white/70 text-sm">Jardim Botânico, Curitiba-PR</p>
+                <p className="text-white/70 text-sm">Jardim Botânico, Curitiba – PR</p>
+              </div>
+            </div>
+            {/* Nearby points */}
+            <div className="bg-white/10 border border-white/10 rounded-2xl p-6">
+              <p className="text-white/50 text-xs uppercase tracking-widest mb-3 font-medium">Perto do Recanto</p>
+              <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+                {['Supermercados', 'Farmácias', 'Padarias', 'Restaurantes', 'Universidades', 'Ônibus / Metrô', 'Parque Jardim Botânico', 'Comércio em geral'].map((p) => (
+                  <div key={p} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+                    <span className="text-white/70 text-sm">{p}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

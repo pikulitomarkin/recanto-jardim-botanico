@@ -11,12 +11,12 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Recanto Jardim Botânico — Quartos para Alugar em Curitiba',
-  description: 'Quartos confortáveis mobiliados para alugar próximos ao Jardim Botânico de Curitiba. A partir de R$1.100/mês com água, luz e internet inclusos.',
-  keywords: 'quarto para alugar em Curitiba, quarto para alugar, aluguel de quarto Curitiba, moradia compartilhada Curitiba, quarto mobiliado Curitiba, quarto individual Curitiba, quarto para estudantes Curitiba, quarto para trabalhadores Curitiba, aluguel Jardim Botânico Curitiba, quarto próximo ao Jardim Botânico',
+  title: 'Recanto Jardim Botânico — Moradia Compartilhada em Curitiba',
+  description: 'Moradia compartilhada para trabalhadores e estudantes no Jardim Botânico, Curitiba. Quartos individuais mobiliados a partir de R$1.100/mês com água, luz e internet inclusos. Agende sua visita!',
+  keywords: 'quarto para alugar Curitiba, quarto individual Curitiba, moradia compartilhada Curitiba, quarto para trabalhador Curitiba, quarto para estudante Curitiba, aluguel de quarto Jardim Botânico Curitiba, quarto mobiliado Curitiba, moradia compartilhada Jardim Botânico Curitiba',
   verification: {
     google: 'google-site-verification-placeholder-code',
-  }
+  },
 }
 
 export default function RootLayout({
