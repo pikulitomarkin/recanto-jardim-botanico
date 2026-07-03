@@ -267,8 +267,9 @@ function QuartosTab({ token }: { token: string }) {
     load()
   }
 
-  async function handleToggleStatus(room: Room) {
-    const updated: Room = { ...room, status: STATUS_CYCLE[room.status] }
+  async function handleSetStatus(room: Room, status: RoomStatus) {
+    if (room.status === status) return
+    const updated: Room = { ...room, status }
     await fetch('/api/rooms', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -341,27 +342,49 @@ function QuartosTab({ token }: { token: string }) {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleToggleStatus(room)}
-                        className="text-xs text-blue-600 hover:underline"
-                        title="Alternar status"
-                      >
-                        Alternar
-                      </button>
-                      <button
-                        onClick={() => setModal(room)}
-                        className="text-xs text-gray-600 hover:underline"
-                      >
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => handleDelete(room.id)}
-                        disabled={deleting === room.id}
-                        className="text-xs text-red-500 hover:underline disabled:opacity-50"
-                      >
-                        {deleting === room.id ? '...' : 'Excluir'}
-                      </button>
+                    <div className="flex flex-col gap-1.5">
+                      {/* Quick status toggle — only Disponível / Alugado */}
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handleSetStatus(room, 'available')}
+                          disabled={room.status === 'available'}
+                          className={`text-xs font-semibold px-2.5 py-1 rounded-full border transition-all ${
+                            room.status === 'available'
+                              ? 'bg-green-500 text-white border-green-500 cursor-default'
+                              : 'text-green-600 border-green-400 hover:bg-green-50'
+                          }`}
+                        >
+                          ✓ Disponível
+                        </button>
+                        <button
+                          onClick={() => handleSetStatus(room, 'occupied')}
+                          disabled={room.status === 'occupied'}
+                          className={`text-xs font-semibold px-2.5 py-1 rounded-full border transition-all ${
+                            room.status === 'occupied'
+                              ? 'bg-red-500 text-white border-red-500 cursor-default'
+                              : 'text-red-500 border-red-400 hover:bg-red-50'
+                          }`}
+                        >
+                          Alugado
+                        </button>
+                      </div>
+                      {/* Row actions */}
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setModal(room)}
+                          className="text-xs text-gray-500 hover:text-gray-800 hover:underline transition-colors"
+                        >
+                          Editar
+                        </button>
+                        <span className="text-gray-200">|</span>
+                        <button
+                          onClick={() => handleDelete(room.id)}
+                          disabled={deleting === room.id}
+                          className="text-xs text-red-400 hover:text-red-600 hover:underline disabled:opacity-50 transition-colors"
+                        >
+                          {deleting === room.id ? '...' : 'Excluir'}
+                        </button>
+                      </div>
                     </div>
                   </td>
                 </tr>
