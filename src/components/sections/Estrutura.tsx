@@ -37,16 +37,21 @@ export default function Estrutura() {
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {facilities.map((facility) => {
-              const hasPhoto = Boolean(facility.driveId)
+              const images = facility.images ?? []
               return (
                 <div key={facility.id} className="flex flex-col rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="h-40 bg-gray-100 overflow-hidden flex-shrink-0">
-                    {hasPhoto ? (
-                      <img
-                        src={getDriveImageUrl(facility.driveId)}
-                        alt={facility.label}
-                        className="w-full h-full object-cover"
-                      />
+                  <div className="relative h-40 bg-gray-100 overflow-hidden flex-shrink-0">
+                    {images.length > 0 ? (
+                      <div className="flex h-full w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+                        {images.map((img, i) => (
+                          <img
+                            key={i}
+                            src={getDriveImageUrl(img)}
+                            alt={`${facility.label} - foto ${i + 1}`}
+                            className="w-full h-full object-cover flex-shrink-0 snap-start"
+                          />
+                        ))}
+                      </div>
                     ) : (
                       <div
                         className="w-full h-full"
@@ -54,6 +59,14 @@ export default function Estrutura() {
                           background: 'repeating-linear-gradient(45deg, #e5e7eb, #e5e7eb 10px, #f3f4f6 10px, #f3f4f6 20px)',
                         }}
                       />
+                    )}
+
+                    {images.length > 1 && (
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                        {images.map((_, i) => (
+                          <span key={i} className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-sm" />
+                        ))}
+                      </div>
                     )}
                   </div>
                   <div className="p-4 bg-white flex-1">

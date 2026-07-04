@@ -67,12 +67,12 @@ const DEFAULT_CONFIG: SiteConfig = {
   logo: { driveId: '', driveUrl: '' },
   rooms: DEFAULT_ROOMS,
   facilities: [
-    { id: 'f1', label: 'Piscina', subtitle: 'Piscina externa para momentos de lazer e descanso', driveId: '', driveUrl: '' },
-    { id: 'f2', label: 'Cozinhas', subtitle: 'Duas cozinhas equipadas com geladeira, fogão e micro-ondas', driveId: '', driveUrl: '' },
-    { id: 'f3', label: 'Lavanderias', subtitle: 'Duas lavanderias completas com máquina de lavar e área de secagem', driveId: '', driveUrl: '' },
-    { id: 'f4', label: 'Banheiros', subtitle: 'Banheiros limpos e mantidos em perfeito estado', driveId: '', driveUrl: '' },
-    { id: 'f5', label: 'Área Externa', subtitle: 'Jardim espaçoso e ambiente muito organizado', driveId: '', driveUrl: '' },
-    { id: 'f6', label: 'Estacionamento', subtitle: 'Vagas seguras para carro e moto', driveId: '', driveUrl: '' },
+    { id: 'f1', label: 'Piscina', subtitle: 'Piscina externa para momentos de lazer e descanso', images: [] },
+    { id: 'f2', label: 'Cozinhas', subtitle: 'Duas cozinhas equipadas com geladeira, fogão e micro-ondas', images: [] },
+    { id: 'f3', label: 'Lavanderias', subtitle: 'Duas lavanderias completas com máquina de lavar e área de secagem', images: [] },
+    { id: 'f4', label: 'Banheiros', subtitle: 'Banheiros limpos e mantidos em perfeito estado', images: [] },
+    { id: 'f5', label: 'Área Externa', subtitle: 'Jardim espaçoso e ambiente muito organizado', images: [] },
+    { id: 'f6', label: 'Estacionamento', subtitle: 'Vagas seguras para carro e moto', images: [] },
   ],
   faq: [
     { question: 'Aceita casal?', answer: 'Não. Todos os quartos são estritamente para uso individual, com o objetivo de garantir a tranquilidade e privacidade de todos os moradores.' },

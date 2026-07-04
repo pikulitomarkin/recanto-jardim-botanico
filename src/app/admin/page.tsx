@@ -467,9 +467,15 @@ function EstruturaTab({ token }: { token: string }) {
       .catch(() => setLoading(false))
   }, [])
 
-  function updateField(id: string, key: keyof Facility, value: string) {
+  function updateField(id: string, key: 'label' | 'subtitle', value: string) {
     setFacilities((prev) =>
       prev.map((f) => (f.id === id ? { ...f, [key]: value } : f))
+    )
+  }
+
+  function updateImages(id: string, images: string[]) {
+    setFacilities((prev) =>
+      prev.map((f) => (f.id === id ? { ...f, images } : f))
     )
   }
 
@@ -493,60 +499,120 @@ function EstruturaTab({ token }: { token: string }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      {facilities.map((f) => {
-        const previewUrl = f.driveUrl ? getDriveThumbnailUrl(f.driveUrl, 400) : null
-        return (
-          <div key={f.id} className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-3">
-            <div className="h-32 rounded-xl overflow-hidden bg-gray-100">
-              {previewUrl ? (
-                <img src={previewUrl} alt={f.label} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
-                  Sem imagem
-                </div>
-              )}
-            </div>
+      {facilities.map((f) => (
+        <FacilityCard
+          key={f.id}
+          facility={f}
+          saving={saving === f.id}
+          onUpdateField={(key, value) => updateField(f.id, key, value)}
+          onUpdateImages={(images) => updateImages(f.id, images)}
+          onSave={() => handleSave(f.id)}
+        />
+      ))}
+    </div>
+  )
+}
 
-            <div>
-              <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Label</label>
-              <input
-                value={f.label}
-                onChange={(e) => updateField(f.id, 'label', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-              />
-            </div>
+interface FacilityCardProps {
+  facility: Facility
+  saving: boolean
+  onUpdateField: (key: 'label' | 'subtitle', value: string) => void
+  onUpdateImages: (images: string[]) => void
+  onSave: () => void
+}
 
-            <div>
-              <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Subtítulo</label>
-              <input
-                value={f.subtitle}
-                onChange={(e) => updateField(f.id, 'subtitle', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-              />
-            </div>
+function FacilityCard({ facility, saving, onUpdateField, onUpdateImages, onSave }: FacilityCardProps) {
+  const [newImageUrl, setNewImageUrl] = useState('')
+  const images = facility.images ?? []
 
-            <div>
-              <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">
-                Drive Link (foto)
-              </label>
-              <input
-                value={f.driveUrl}
-                onChange={(e) => updateField(f.id, 'driveUrl', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                placeholder="https://drive.google.com/file/d/..."
-              />
-            </div>
+  function addImage() {
+    const url = newImageUrl.trim()
+    if (!url) return
+    onUpdateImages([...images, url])
+    setNewImageUrl('')
+  }
 
-            <button
-              onClick={() => handleSave(f.id)}
-              disabled={saving === f.id}
-              className="w-full py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60"
-            >
-              {saving === f.id ? 'Salvando...' : 'Salvar'}
-            </button>
+  function removeImage(index: number) {
+    onUpdateImages(images.filter((_, i) => i !== index))
+  }
+
+  return (
+    <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-3">
+      <div>
+        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Label</label>
+        <input
+          value={facility.label}
+          onChange={(e) => onUpdateField('label', e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Subtítulo</label>
+        <input
+          value={facility.subtitle}
+          onChange={(e) => onUpdateField('subtitle', e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Fotos (Google Drive)</label>
+        <div className="flex gap-2">
+          <input
+            value={newImageUrl}
+            onChange={(e) => setNewImageUrl(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                addImage()
+              }
+            }}
+            className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+            placeholder="https://drive.google.com/file/d/..."
+          />
+          <button
+            type="button"
+            onClick={addImage}
+            className="px-4 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+          >
+            Adicionar
+          </button>
+        </div>
+
+        {images.length > 0 ? (
+          <div className="grid grid-cols-3 gap-2 mt-3">
+            {images.map((img, i) => (
+              <div key={i} className="relative rounded-lg overflow-hidden border border-gray-100 h-24 group">
+                <img
+                  src={getDriveThumbnailUrl(img, 200)}
+                  alt={`Foto ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeImage(i)}
+                  className="absolute top-1 right-1 bg-black/60 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs transition-colors"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
           </div>
-        )
-      })}
+        ) : (
+          <div className="h-24 mt-3 rounded-lg bg-gray-100 flex items-center justify-center text-gray-300 text-xs">
+            Sem imagem
+          </div>
+        )}
+      </div>
+
+      <button
+        onClick={onSave}
+        disabled={saving}
+        className="w-full py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60"
+      >
+        {saving ? 'Salvando...' : 'Salvar'}
+      </button>
     </div>
   )
 }

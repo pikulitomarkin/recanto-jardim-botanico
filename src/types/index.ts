@@ -17,8 +17,7 @@ export interface Facility {
   id: string
   label: string
   subtitle: string
-  driveId: string
-  driveUrl: string
+  images: string[]
 }
 
 export interface FaqItem {
