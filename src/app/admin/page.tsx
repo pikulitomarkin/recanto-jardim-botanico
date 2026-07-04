@@ -62,17 +62,28 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
     price: 1100,
     priceGroup: '1100',
     status: 'available',
-    driveId: '',
-    driveUrl: '',
+    images: [],
     whatsappMsg: '',
     description: '',
     videoUrl: '',
     highlight: '',
     ...room,
   })
+  const [newImageUrl, setNewImageUrl] = useState('')
 
   function update<K extends keyof Room>(key: K, value: Room[K]) {
     setForm((prev) => ({ ...prev, [key]: value }))
+  }
+
+  function addImage() {
+    const url = newImageUrl.trim()
+    if (!url) return
+    update('images', [...(form.images ?? []), url])
+    setNewImageUrl('')
+  }
+
+  function removeImage(index: number) {
+    update('images', (form.images ?? []).filter((_, i) => i !== index))
   }
 
   function handleSave() {
@@ -83,8 +94,7 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
       price: form.price ?? 0,
       priceGroup: String(form.price ?? 0),
       status: form.status ?? 'available',
-      driveId: form.driveId ?? '',
-      driveUrl: form.driveUrl ?? '',
+      images: form.images ?? [],
       whatsappMsg:
         form.whatsappMsg ||
         `Olá! Tenho interesse no ${form.name} (R$${form.price}/mês). Poderia me dar mais informações?`,
@@ -94,8 +104,6 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
     }
     onSave(r)
   }
-
-  const previewUrl = form.driveUrl ? getDriveThumbnailUrl(form.driveUrl, 400) : null
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 animate-fadeIn">
@@ -185,21 +193,51 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
 
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">
-              Link Google Drive (foto)
+              Fotos (Google Drive)
             </label>
-            <input
-              value={form.driveUrl ?? ''}
-              onChange={(e) => update('driveUrl', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-              placeholder="https://drive.google.com/file/d/..."
-            />
-          </div>
-
-          {previewUrl && (
-            <div className="rounded-lg overflow-hidden border border-gray-100 h-40">
-              <img src={previewUrl} alt="preview" className="w-full h-full object-cover" />
+            <div className="flex gap-2">
+              <input
+                value={newImageUrl}
+                onChange={(e) => setNewImageUrl(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addImage()
+                  }
+                }}
+                className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                placeholder="https://drive.google.com/file/d/..."
+              />
+              <button
+                type="button"
+                onClick={addImage}
+                className="px-4 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+              >
+                Adicionar
+              </button>
             </div>
-          )}
+
+            {(form.images ?? []).length > 0 && (
+              <div className="grid grid-cols-3 gap-2 mt-3">
+                {(form.images ?? []).map((img, i) => (
+                  <div key={i} className="relative rounded-lg overflow-hidden border border-gray-100 h-24 group">
+                    <img
+                      src={getDriveThumbnailUrl(img, 200)}
+                      alt={`Foto ${i + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(i)}
+                      className="absolute top-1 right-1 bg-black/60 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs transition-colors"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">
@@ -321,9 +359,9 @@ function QuartosTab({ token }: { token: string }) {
                 <tr key={room.id} className="bg-white hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-3">
                     <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
-                      {room.driveUrl ? (
+                      {room.images?.[0] ? (
                         <img
-                          src={getDriveThumbnailUrl(room.driveUrl, 120)}
+                          src={getDriveThumbnailUrl(room.images[0], 120)}
                           alt={room.name}
                           className="w-full h-full object-cover"
                         />

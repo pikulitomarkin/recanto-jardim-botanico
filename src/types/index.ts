@@ -6,8 +6,7 @@ export interface Room {
   price: number
   priceGroup: string
   status: RoomStatus
-  driveId: string
-  driveUrl: string
+  images: string[]
   whatsappMsg: string
   description: string
   videoUrl: string
