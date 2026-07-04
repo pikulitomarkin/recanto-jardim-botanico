@@ -93,8 +93,10 @@ const DEFAULT_CONFIG: SiteConfig = {
   adminPasswordHash: process.env.ADMIN_PASSWORD_HASH || '',
 }
 
+const kvEnabled = () => Boolean(process.env.KV_REST_API_URL)
+
 export async function getSiteConfig(): Promise<SiteConfig> {
-  if (process.env.VERCEL_KV_URL) {
+  if (kvEnabled()) {
     try {
       const { kv } = await import('@vercel/kv')
       const stored = await kv.get<SiteConfig>('rjb:config')
@@ -112,7 +114,7 @@ export async function getRooms(): Promise<Room[]> {
 }
 
 export async function updateRooms(rooms: Room[]): Promise<void> {
-  if (process.env.VERCEL_KV_URL) {
+  if (kvEnabled()) {
     const { kv } = await import('@vercel/kv')
     const config = await getSiteConfig()
     await kv.set('rjb:config', { ...config, rooms })
@@ -120,7 +122,7 @@ export async function updateRooms(rooms: Room[]): Promise<void> {
 }
 
 export async function updateConfig(partial: Partial<SiteConfig>): Promise<void> {
-  if (process.env.VERCEL_KV_URL) {
+  if (kvEnabled()) {
     const { kv } = await import('@vercel/kv')
     const config = await getSiteConfig()
     await kv.set('rjb:config', { ...config, ...partial })

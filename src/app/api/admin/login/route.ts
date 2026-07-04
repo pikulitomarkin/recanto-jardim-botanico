@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createHash } from 'crypto'
 import { signToken } from '@/lib/auth'
+import { getSiteConfig } from '@/lib/storage'
 
 export async function POST(request: NextRequest) {
   let body: { password?: string }
@@ -16,7 +17,8 @@ export async function POST(request: NextRequest) {
   }
 
   const hash = createHash('sha256').update(password).digest('hex')
-  const expected = process.env.ADMIN_PASSWORD_HASH ?? ''
+  const config = await getSiteConfig()
+  const expected = config.adminPasswordHash
 
   if (!expected || hash !== expected) {
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
