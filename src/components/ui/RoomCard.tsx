@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getDriveImageUrl } from '@/lib/gdrive.client'
 import { Room, RoomStatus } from '@/types'
 import VideoModal from './VideoModal'
@@ -24,16 +24,49 @@ interface RoomCardProps {
 
 export default function RoomCard({ room }: RoomCardProps) {
   const [showVideo, setShowVideo] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const status = STATUS_CONFIG[room.status]
   const images = room.images ?? []
   const waUrl = `https://wa.me/5541999999999?text=${encodeURIComponent(room.whatsappMsg)}`
 
+  // Auto-advance the carousel when the room has more than one photo
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) return
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [images.length, isPaused])
+
+  // Keep the scroll position in sync with the active index
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    el.scrollTo({ left: activeIndex * el.clientWidth, behavior: 'smooth' })
+  }, [activeIndex])
+
+  function handleScroll() {
+    const el = scrollRef.current
+    if (!el || el.clientWidth === 0) return
+    setActiveIndex(Math.round(el.scrollLeft / el.clientWidth))
+  }
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow relative">
+    <div
+      className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow relative"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Image */}
       <div className="relative h-48 overflow-hidden bg-gray-100 flex-shrink-0">
         {images.length > 0 ? (
-          <div className="flex h-full w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex h-full w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+          >
             {images.map((img, i) => (
               <img
                 key={i}
@@ -56,7 +89,12 @@ export default function RoomCard({ room }: RoomCardProps) {
         {images.length > 1 && (
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
             {images.map((_, i) => (
-              <span key={i} className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-sm" />
+              <span
+                key={i}
+                className={`h-1.5 rounded-full shadow-sm transition-all ${
+                  i === activeIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/60'
+                }`}
+              />
             ))}
           </div>
         )}
