@@ -1,11 +1,10 @@
-const WA_DISPONIBILIDADE = 'https://wa.me/5541999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20a%20disponibilidade%20de%20quartos%20no%20Recanto%20Jardim%20Bot%C3%A2nico.'
+'use client'
 
-const FAIXAS = [
-  { preco: 'R$ 1.100', label: 'Standard' },
-  { preco: 'R$ 1.200', label: 'Standard Plus' },
-  { preco: 'R$ 1.300', label: 'Premium' },
-  { preco: 'R$ 1.400', label: 'Master' },
-]
+import { useEffect, useState } from 'react'
+import RoomCard from '@/components/ui/RoomCard'
+import type { PriceGroup } from '@/app/api/rooms/route'
+
+const WA_DISPONIBILIDADE = 'https://wa.me/5541999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20a%20disponibilidade%20de%20quartos%20no%20Recanto%20Jardim%20Bot%C3%A2nico.'
 
 const INCLUSO = [
   'Água e luz inclusos',
@@ -17,9 +16,22 @@ const INCLUSO = [
 ]
 
 export default function Quartos() {
+  const [priceGroups, setPriceGroups] = useState<PriceGroup[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/api/rooms')
+      .then((r) => r.json())
+      .then((data) => {
+        setPriceGroups(data.priceGroups ?? [])
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
+  }, [])
+
   return (
     <section id="quartos" className="py-20 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-primary mb-3">
@@ -34,16 +46,25 @@ export default function Quartos() {
           </p>
         </div>
 
-        {/* Price bands */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {FAIXAS.map((f) => (
-            <div key={f.preco} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md hover:border-primary/20 transition-all">
-              <p className="text-2xl font-bold text-primary mb-1">{f.preco}</p>
-              <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">{f.label}</p>
-              <p className="text-xs text-gray-400 mt-1">por mês</p>
-            </div>
-          ))}
-        </div>
+        {/* Rooms grouped by price */}
+        {loading ? (
+          <div className="flex justify-center py-16">
+            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : (
+          <div className="space-y-12 mb-10">
+            {priceGroups.map((group) => (
+              <div key={group.price}>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{group.label}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {group.rooms.map((room) => (
+                    <RoomCard key={room.id} room={room} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Incluso */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 mb-10">
