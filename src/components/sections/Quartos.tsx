@@ -29,6 +29,10 @@ export default function Quartos() {
       .catch(() => setLoading(false))
   }, [])
 
+  const allRoomsSorted = priceGroups
+    .flatMap((group) => group.rooms)
+    .sort((a, b) => a.price - b.price)
+
   return (
     <section id="quartos" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,22 +50,15 @@ export default function Quartos() {
           </p>
         </div>
 
-        {/* Rooms grouped by price */}
+        {/* All rooms, flat grid sorted by price ascending: 3 columns on vertical/tablet, 4 on horizontal/desktop */}
         {loading ? (
           <div className="flex justify-center py-16">
             <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="space-y-12 mb-10">
-            {priceGroups.map((group) => (
-              <div key={group.price}>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{group.label}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {group.rooms.map((room) => (
-                    <RoomCard key={room.id} room={room} />
-                  ))}
-                </div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
+            {allRoomsSorted.map((room) => (
+              <RoomCard key={room.id} room={room} />
             ))}
           </div>
         )}
