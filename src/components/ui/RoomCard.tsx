@@ -27,6 +27,8 @@ export default function RoomCard({ room }: RoomCardProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const isProgrammaticScroll = useRef(false)
+  const programmaticScrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const status = STATUS_CONFIG[room.status]
   const images = room.images ?? []
   const waUrl = `https://wa.me/5541999999999?text=${encodeURIComponent(room.whatsappMsg)}`
@@ -40,14 +42,26 @@ export default function RoomCard({ room }: RoomCardProps) {
     return () => clearInterval(interval)
   }, [images.length, isPaused])
 
-  // Keep the scroll position in sync with the active index
+  // Keep the scroll position in sync with the active index. The onScroll
+  // handler below must ignore events fired by this programmatic scroll,
+  // otherwise it reads a mid-animation scrollLeft, rounds back to the
+  // previous index, and fights the auto-advance (image never changes).
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
+    isProgrammaticScroll.current = true
     el.scrollTo({ left: activeIndex * el.clientWidth, behavior: 'smooth' })
+    if (programmaticScrollTimeout.current) clearTimeout(programmaticScrollTimeout.current)
+    programmaticScrollTimeout.current = setTimeout(() => {
+      isProgrammaticScroll.current = false
+    }, 600)
+    return () => {
+      if (programmaticScrollTimeout.current) clearTimeout(programmaticScrollTimeout.current)
+    }
   }, [activeIndex])
 
   function handleScroll() {
+    if (isProgrammaticScroll.current) return
     const el = scrollRef.current
     if (!el || el.clientWidth === 0) return
     setActiveIndex(Math.round(el.scrollLeft / el.clientWidth))
