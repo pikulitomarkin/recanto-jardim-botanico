@@ -11,11 +11,36 @@ const STATUS_CONFIG: Record<RoomStatus, { label: string; classes: string }> = {
   reserved:  { label: 'Reservado',  classes: 'bg-yellow-100 text-yellow-700 border-yellow-200' },
 }
 
+const ICONS: Record<string, React.ReactNode> = {
+  wifi: (
+    <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a2 2 0 110-4 2 2 0 010 4zM6 15a8.966 8.966 0 0112 0M3 11a14.947 14.947 0 0118 0" />
+    </svg>
+  ),
+  tv: (
+    <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <rect x="2" y="7" width="20" height="11" rx="2" ry="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17 21l-2-2H9l-2 2M7 3l5 4 5-4" />
+    </svg>
+  ),
+  cama: (
+    <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2 20V9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v11M2 17h20M2 13h20M6 9h4v4H6V9z" />
+    </svg>
+  ),
+  armario: (
+    <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M9 11v2M15 11v2" />
+    </svg>
+  ),
+}
+
 const FEATURES = [
-  { icon: '📶', label: 'Wi-Fi Fibra' },
-  { icon: '📺', label: 'TV' },
-  { icon: '🛏️', label: 'Cama confortável' },
-  { icon: '🗄️', label: 'Armário' },
+  { iconKey: 'wifi', label: 'Wi-Fi Fibra' },
+  { iconKey: 'tv', label: 'TV' },
+  { iconKey: 'cama', label: 'Cama confortável' },
+  { iconKey: 'armario', label: 'Armário' },
 ]
 
 interface RoomCardProps {
@@ -77,8 +102,8 @@ export default function RoomCard({ room }: RoomCardProps) {
       <div className="relative h-48 overflow-hidden bg-gray-100 flex-shrink-0">
         {images.length > 0 ? (
           <div
-            ref={scrollRef}
             onScroll={handleScroll}
+            ref={scrollRef}
             className="flex h-full w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
           >
             {images.map((img, i) => (
@@ -162,8 +187,8 @@ export default function RoomCard({ room }: RoomCardProps) {
         <ul className="grid grid-cols-2 gap-1.5 mb-5 mt-auto">
           {FEATURES.map((f) => (
             <li key={f.label} className="flex items-center gap-1.5 text-xs text-gray-600">
-              <span>{f.icon}</span>
-              {f.label}
+              {ICONS[f.iconKey]}
+              <span>{f.label}</span>
             </li>
           ))}
         </ul>
