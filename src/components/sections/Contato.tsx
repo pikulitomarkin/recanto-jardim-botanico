@@ -127,18 +127,6 @@ export default function Contato() {
                 <p className="text-white/70 text-sm">Jardim Botânico, Curitiba – PR</p>
               </div>
             </div>
-            {/* Nearby points */}
-            <div className="bg-white/10 border border-white/10 rounded-2xl p-6">
-              <p className="text-white/50 text-xs uppercase tracking-widest mb-3 font-medium">Perto do Recanto</p>
-              <div className="grid grid-cols-2 gap-y-2 gap-x-4">
-                {['Supermercados', 'Farmácias', 'Padarias', 'Restaurantes', 'Universidades', 'Ônibus / Metrô', 'Parque Jardim Botânico', 'Comércio em geral'].map((p) => (
-                  <div key={p} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
-                    <span className="text-white/70 text-sm">{p}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
