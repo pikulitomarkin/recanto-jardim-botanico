@@ -104,12 +104,12 @@ export default function Contato() {
               <div>
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">Instagram</p>
                 <a
-                  href="https://instagram.com/recantojardimsul"
+                  href="https://instagram.com/recantojardimbotanico_"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-semibold text-base hover:text-gold transition-colors"
                 >
-                  @recantojardimsul
+                  @recantojardimbotanico_
                 </a>
                 <p className="text-white/50 text-xs mt-0.5">Fotos e novidades</p>
               </div>
