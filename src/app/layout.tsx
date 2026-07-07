@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   title: 'Recanto Jardim Botânico — Moradia Compartilhada em Curitiba',
   description: 'Moradia compartilhada para trabalhadores e estudantes no Jardim Botânico, Curitiba. Quartos individuais mobiliados a partir de R$1.100/mês com água, luz e internet inclusos. Agende sua visita!',
   keywords: 'quarto para alugar Curitiba, quarto individual Curitiba, moradia compartilhada Curitiba, quarto para trabalhador Curitiba, quarto para estudante Curitiba, aluguel de quarto Jardim Botânico Curitiba, quarto mobiliado Curitiba, moradia compartilhada Jardim Botânico Curitiba',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   verification: {
     google: 'google-site-verification-placeholder-code',
   },
