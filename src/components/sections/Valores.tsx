@@ -16,26 +16,32 @@ const NOT_INCLUDES = [
 const PRICE_GROUPS = [
   {
     price: 1100,
-    label: 'Quartos Standard',
+    label: 'Econômico',
     description: 'Quarto individual mobiliado completo.',
     highlight: false,
   },
   {
     price: 1200,
-    label: 'Quartos Premium',
+    label: 'Essencial',
     description: 'Quarto com escrivaninha e mais amplo.',
     highlight: false,
   },
   {
     price: 1300,
-    label: 'Quartos Superior',
+    label: 'Conforto',
     description: 'Quarto reformado com móveis planejados.',
     highlight: true,
   },
   {
     price: 1400,
-    label: 'Quartos Master',
-    description: 'Suíte master com banheiro privativo.',
+    label: 'Superior',
+    description: 'Suíte espaçosa com excelente acabamento.',
+    highlight: false,
+  },
+  {
+    price: 1500,
+    label: 'Premium',
+    description: 'Máximo espaço, armários e conforto.',
     highlight: false,
   },
 ]
@@ -54,7 +60,7 @@ export default function Valores() {
         </div>
 
         {/* Price cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-14 max-w-6xl mx-auto">
           {PRICE_GROUPS.map((group) => (
             <div
               key={group.price}

@@ -327,9 +327,97 @@ function QuartosTab({ token }: { token: string }) {
     load()
   }
 
+  async function handleResetMapping() {
+    if (!confirm('Deseja realmente atualizar o mapeamento de todos os 22 quartos? Isso manterá as fotos, status e descrições dos quartos existentes, mas atualizará seus preços e adicionará os novos quartos conforme a nova tabela.')) return
+
+    setLoading(true)
+    try {
+      const res = await fetch('/api/rooms')
+      const data = await res.json()
+      const currentRooms: Room[] = (data.priceGroups ?? []).flatMap((g: { rooms: Room[] }) => g.rooms)
+
+      const currentByNumber = new Map<string, Room>()
+      currentRooms.forEach((r) => {
+        const match = r.name.match(/\d+/)
+        if (match) {
+          const num = match[0].padStart(2, '0')
+          currentByNumber.set(num, r)
+        }
+      })
+
+      const newMapping = [
+        { price: 1100, rooms: ['09', '11', '12'] },
+        { price: 1200, rooms: ['13', '14', '19'] },
+        { price: 1300, rooms: ['04', '05', '06', '07', '15', '16', '22'] },
+        { price: 1400, rooms: ['01', '02', '03', '08', '17', '18', '20'] },
+        { price: 1500, rooms: ['10', '21'] }
+      ]
+
+      const updatedRooms: Room[] = []
+
+      newMapping.forEach(({ price, rooms: roomNums }) => {
+        roomNums.forEach((num) => {
+          const existing = currentByNumber.get(num)
+          if (existing) {
+            updatedRooms.push({
+              ...existing,
+              name: existing.name.trim(),
+              price,
+              priceGroup: String(price),
+              whatsappMsg: `Olá! Tenho interesse no ${existing.name.trim()} (R$${price}/mês) no Jardim Botânico de Curitiba.`
+            })
+          } else {
+            const name = `Quarto ${num}`
+            updatedRooms.push({
+              id: `r_new_${num}`,
+              name,
+              price,
+              priceGroup: String(price),
+              status: 'available',
+              images: [],
+              whatsappMsg: `Olá! Tenho interesse no ${name} (R$${price}/mês) no Jardim Botânico de Curitiba.`,
+              description: 'Quarto individual mobiliado completo com cama de solteiro, guarda-roupa e escrivaninha.',
+              videoUrl: '',
+              highlight: ''
+            })
+          }
+        })
+      })
+
+      // Sort rooms by name (numeric suffix) for a cleaner layout
+      updatedRooms.sort((a, b) => {
+        const numA = parseInt(a.name.match(/\d+/)?.[0] || '0')
+        const numB = parseInt(b.name.match(/\d+/)?.[0] || '0')
+        return numA - numB
+      })
+
+      const updateRes = await fetch('/api/admin/config', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ rooms: updatedRooms }),
+      })
+
+      if (updateRes.ok) {
+        alert('Mapeamento dos quartos atualizado com sucesso!')
+      } else {
+        alert('Erro ao salvar novo mapeamento no banco de dados.')
+      }
+    } catch (e) {
+      console.error(e)
+      alert('Ocorreu um erro ao atualizar o mapeamento.')
+    }
+    load()
+  }
+
   return (
     <div>
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-between items-center mb-4 gap-4 flex-wrap">
+        <button
+          onClick={handleResetMapping}
+          className="flex items-center gap-2 bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
+        >
+          ⚙️ Atualizar Mapeamento (Tabela de 22 Quartos)
+        </button>
         <button
           onClick={() => setModal({})}
           className="flex items-center gap-2 bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
