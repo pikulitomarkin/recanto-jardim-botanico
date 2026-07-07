@@ -186,6 +186,9 @@ const DEFAULT_ROOMS: Room[] = [
     priceGroup: '1400',
     status: 'occupied',
     images: [
+      'https://drive.google.com/file/d/1jaeAoeCWtJdNDlrV3aLgv394FGp122Uw/view?usp=drive_link',
+      'https://drive.google.com/file/d/1kxb7QEKioCr53trjfj4dz6qdg4_XsioW/view?usp=drive_link',
+      'https://drive.google.com/file/d/1DAD4MnsMasMvaODAp1amwRbeH__v1Hak/view?usp=drive_link',
       'https://drive.google.com/file/d/1SlwFY9Ag-r8dYBXpSn77m2rGrmlT6PLv/view?usp=drive_link'
     ],
     whatsappMsg: 'Olá! Tenho interesse no Quarto 01 (R$1.400/mês) no Jardim Botânico de Curitiba.',
