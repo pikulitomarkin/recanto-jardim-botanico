@@ -1,5 +1,7 @@
 'use client'
 
+import { IconX } from '@/components/ui/Icons'
+
 interface VideoModalProps {
   videoUrl: string
   onClose: () => void
@@ -42,7 +44,7 @@ export default function VideoModal({ videoUrl, onClose }: VideoModalProps) {
           className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-colors border border-white/10"
           aria-label="Fechar"
         >
-          ✕
+          <IconX size={16} />
         </button>
 
         {/* Video Container */}

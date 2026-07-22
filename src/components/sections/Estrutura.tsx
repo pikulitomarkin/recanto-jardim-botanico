@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { getDriveImageUrl } from '@/lib/gdrive.client'
 import { Facility } from '@/types'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { IconCheck, PARKING_ICONS } from '@/components/ui/Icons'
 import { PARKING, WA } from '@/lib/brand'
 
 /** Textos de benefício por ambiente (quando o admin não personalizou). */
@@ -115,14 +116,18 @@ export default function Estrutura() {
                     <p className="text-sm text-gray-600 leading-relaxed">{benefitFor(facility)}</p>
                     {isParking && (
                       <ul className="mt-4 space-y-2">
-                        {PARKING.map((item) => (
+                        {PARKING.map((item) => {
+                          const ParkingIcon = PARKING_ICONS[item.icon]
+                          return (
                           <li key={item.label} className="text-sm text-gray-700">
-                            <span className="font-medium">
-                              {item.icon} {item.label}
+                            <span className="font-medium inline-flex items-center gap-2">
+                              <ParkingIcon size={16} className="text-primary" />
+                              {item.label}
                             </span>
-                            <span className="block text-primary text-xs mt-0.5">{item.price}</span>
+                            <span className="block text-primary text-xs mt-0.5 pl-6">{item.price}</span>
                           </li>
-                        ))}
+                          )
+                        })}
                       </ul>
                     )}
                   </div>
@@ -140,7 +145,7 @@ export default function Estrutura() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {INCLUSO.map((item) => (
               <div key={item} className="flex items-center gap-2 text-sm text-white/90">
-                <span className="text-green-300 font-bold">✔</span>
+                <IconCheck size={14} className="text-green-300" />
                 {item}
               </div>
             ))}
@@ -148,7 +153,7 @@ export default function Estrutura() {
         </div>
 
         <div className="text-center">
-          <WhatsAppButton href={WA.estrutura} label="📲 Quero conhecer essa estrutura" />
+          <WhatsAppButton href={WA.estrutura} label="Quero conhecer essa estrutura" />
         </div>
       </div>
     </section>

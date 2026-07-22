@@ -37,7 +37,7 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm sm:max-w-none sm:w-auto">
-          <WhatsAppButton href={WA.visita} label="📲 Agendar minha visita" />
+          <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
           <a
             href="#moradia-compartilhada"
             className="flex items-center justify-center gap-2 border border-white/30 hover:border-white/60 text-white font-semibold px-8 py-3.5 rounded-full transition-colors hover:bg-white/5"

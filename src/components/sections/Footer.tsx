@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import BrandSlogan from '@/components/ui/BrandSlogan'
+import { IconHandsHeart } from '@/components/ui/Icons'
 import {
   ADDRESS_CITY,
   ADDRESS_LINE1,
@@ -91,7 +92,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-8 border-t border-white/10 text-center">
-          <p className="text-[#C9A227] text-sm font-medium mb-1">🤝 {BRAND_SLOGAN}</p>
+          <p className="text-[#C9A227] text-sm font-medium mb-1 inline-flex items-center justify-center gap-1.5">
+            <IconHandsHeart size={16} className="text-[#C9A227]" />
+            {BRAND_SLOGAN}
+          </p>
           <p className="text-white/20 text-xs">{ADDRESS_LINE2} · {ADDRESS_CITY}</p>
         </div>
       </div>

@@ -1,3 +1,11 @@
+import {
+  IconCar,
+  IconCheck,
+  IconClipboard,
+  IconWarning,
+  IconX,
+} from '@/components/ui/Icons'
+
 const INCLUDES = [
   'Água e energia elétrica',
   'Internet fibra óptica',
@@ -94,8 +102,9 @@ export default function Valores() {
           <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
             {/* Includes */}
             <div className="p-6">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">
-                ✅ O que inclui
+              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 inline-flex items-center gap-1.5">
+                <IconCheck size={14} className="text-green-600" />
+                O que inclui
               </h3>
               <ul className="space-y-2.5">
                 {INCLUDES.map((item) => (
@@ -109,8 +118,9 @@ export default function Valores() {
 
             {/* Not includes */}
             <div className="p-6 bg-gray-50/60">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">
-                ❌ O que não inclui
+              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 inline-flex items-center gap-1.5">
+                <IconX size={14} className="text-red-500" />
+                O que não inclui
               </h3>
               <ul className="space-y-2.5">
                 {NOT_INCLUDES.map((item) => (
@@ -125,7 +135,7 @@ export default function Valores() {
 
           {/* Deposit note */}
           <div className="px-6 py-4 bg-amber-50 border-t border-amber-100 flex items-start gap-2">
-            <span className="text-amber-500 text-sm mt-0.5">⚠️</span>
+            <IconWarning size={16} className="text-amber-500 mt-0.5" />
             <p className="text-xs text-amber-800 leading-relaxed">
               <span className="font-semibold">Caução:</span> equivalente a 1 mês de aluguel, devolvido ao final do contrato.
               Contas individuais (gás) são pagas diretamente pelo inquilino.
@@ -136,12 +146,12 @@ export default function Valores() {
         {/* Parking and contracting details card */}
         <div className="max-w-3xl mx-auto mt-8 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden p-6 sm:p-8">
           <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6 flex items-center gap-2">
-            <span>🚗</span> Custos e Condições Adicionais
+            <IconCar size={16} className="text-primary" /> Custos e Condições Adicionais
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
             <div className="bg-gray-50/50 p-5 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-3 flex items-center gap-1.5">
-                <span>🚘</span> Estacionamento
+                <IconCar size={16} className="text-primary" /> Estacionamento
               </p>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center justify-between">
@@ -159,7 +169,7 @@ export default function Valores() {
             </div>
             <div className="bg-gray-50/50 p-5 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-3 flex items-center gap-1.5">
-                <span>📝</span> Condições Gerais
+                <IconClipboard size={16} className="text-primary" /> Condições Gerais
               </p>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-start gap-2">
