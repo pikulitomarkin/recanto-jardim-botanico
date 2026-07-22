@@ -68,7 +68,7 @@ export default function Contato() {
             </p>
             <WhatsAppButton
               href={WA.visita}
-              label="📲 Agendar minha visita pelo WhatsApp"
+              label="Agendar minha visita pelo WhatsApp"
               className="mb-8"
             />
 

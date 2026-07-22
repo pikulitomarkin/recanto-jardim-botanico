@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getDriveImageUrl } from '@/lib/gdrive.client'
 import { Room } from '@/types'
 import VideoModal from './VideoModal'
+import { IconAvailable, IconWhatsApp } from '@/components/ui/Icons'
 import { WA, categoryByPrice } from '@/lib/brand'
 
 interface RoomCardProps {
@@ -115,8 +116,9 @@ export default function RoomCard({ room, categoryName }: RoomCardProps) {
         )}
 
         {room.status === 'available' && (
-          <span className="absolute top-3 right-3 text-xs font-medium px-2.5 py-1 rounded-full border bg-green-50 text-green-700 border-green-200">
-            🟢 Disponível
+          <span className="absolute top-3 right-3 text-xs font-medium px-2.5 py-1 rounded-full border bg-green-50 text-green-700 border-green-200 inline-flex items-center gap-1.5">
+            <IconAvailable size={8} className="text-green-500" />
+            Disponível
           </span>
         )}
       </div>
@@ -145,7 +147,8 @@ export default function RoomCard({ room, categoryName }: RoomCardProps) {
           rel="noopener noreferrer"
           className="mt-auto flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-colors shadow-sm shadow-green-500/25"
         >
-          📲 Quero Conhecer Este Quarto
+          <IconWhatsApp size={16} />
+          Quero Conhecer Este Quarto
         </a>
       </div>
 

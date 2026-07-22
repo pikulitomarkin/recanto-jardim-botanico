@@ -94,9 +94,9 @@ export function formatCurrency(value: number): string {
 }
 
 export const PARKING = [
-  { icon: '🚗', label: 'Carro (vaga descoberta)', price: 'R$ 250,00 por mês' },
-  { icon: '🏍', label: 'Moto (vaga coberta)', price: 'R$ 150,00 por mês' },
-  { icon: '🚲', label: 'Bicicletário', price: 'Gratuito para todos os moradores' },
+  { icon: 'car' as const, label: 'Carro (vaga descoberta)', price: 'R$ 250,00 por mês' },
+  { icon: 'motorcycle' as const, label: 'Moto (vaga coberta)', price: 'R$ 150,00 por mês' },
+  { icon: 'bike' as const, label: 'Bicicletário', price: 'Gratuito para todos os moradores' },
 ]
 
 export const NAV_LINKS = [

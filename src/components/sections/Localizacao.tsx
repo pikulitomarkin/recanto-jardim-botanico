@@ -1,7 +1,16 @@
+import {
+  CATEGORY_ICONS,
+  IconCar,
+  IconMapPin,
+  IconWalk,
+} from '@/components/ui/Icons'
 import { GOOGLE_MAPS_URL } from '@/lib/brand'
+
+type CategoryIconKey = keyof typeof CATEGORY_ICONS
 
 interface Landmark {
   category: string
+  categoryIcon: CategoryIconKey
   title: string
   desc: string
   img: string
@@ -13,7 +22,8 @@ interface Landmark {
 
 const LANDMARKS: Landmark[] = [
   {
-    category: '🌳 Turismo e Lazer',
+    category: 'Turismo e Lazer',
+    categoryIcon: 'tree',
     title: 'Jardim Botânico',
     desc: 'O principal cartão-postal de Curitiba, ideal para caminhadas, lazer e momentos de descanso.',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Estufa_principal_do_Jardim_Bot%C3%A2nico_de_Curitiba_02.jpg/500px-Estufa_principal_do_Jardim_Bot%C3%A2nico_de_Curitiba_02.jpg',
@@ -23,7 +33,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '0,6 km',
   },
   {
-    category: '🎓 Educação',
+    category: 'Educação',
+    categoryIcon: 'graduation',
     title: 'Universidade Federal do Paraná (UFPR)',
     desc: 'Facilidade de acesso ao Campus Politécnico da UFPR, ideal para estudantes, professores e pesquisadores.',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Universidade_Federal_do_Parana_4_Curitiba_Parana.jpg/500px-Universidade_Federal_do_Parana_4_Curitiba_Parana.jpg',
@@ -33,7 +44,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '1,5 km',
   },
   {
-    category: '🎓 Educação',
+    category: 'Educação',
+    categoryIcon: 'graduation',
     title: 'Pontifícia Universidade Católica do Paraná (PUCPR)',
     desc: 'Localização estratégica para quem estuda ou trabalha na PUCPR.',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Arquibancada_do_velho_prado_velho.JPG/500px-Arquibancada_do_velho_prado_velho.JPG',
@@ -43,7 +55,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '2,1 km',
   },
   {
-    category: '🏥 Saúde',
+    category: 'Saúde',
+    categoryIcon: 'hospital',
     title: 'Hospitais de Referência',
     desc: 'Próximo ao Hospital Universitário Cajuru, Hospital Marcelino Champagnat e Hospital da Polícia Militar. Ideal para profissionais da saúde, estudantes e familiares.',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Hospital_de_Cl%C3%ADnicas.jpg/500px-Hospital_de_Cl%C3%ADnicas.jpg',
@@ -53,7 +66,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '1,1 km',
   },
   {
-    category: '🛒 Comércio e Serviços',
+    category: 'Comércio e Serviços',
+    categoryIcon: 'cart',
     title: 'Supermercado, Padaria e Farmácia',
     desc: 'Supermercado Super G, Panificadora Sensação e Farmácia Nissei a poucos minutos da residência. Mais praticidade para o dia a dia.',
     img: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=500',
@@ -63,7 +77,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '150m',
   },
   {
-    category: '🍽 Gastronomia',
+    category: 'Gastronomia',
+    categoryIcon: 'utensils',
     title: 'Restaurantes e Lanches',
     desc: "Próximo ao Restaurante Di Paolo, Kharina e Habib's, oferecendo diversas opções para refeições e lanches.",
     img: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=500',
@@ -73,7 +88,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '300m',
   },
   {
-    category: '🚌 Mobilidade',
+    category: 'Mobilidade',
+    categoryIcon: 'bus',
     title: 'Rodoferroviária de Curitiba',
     desc: 'Excelente opção para quem viaja com frequência ou recebe familiares de outras cidades.',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/20042017_-_Rodoferrovi%C3%A1ria_de_Curitiba.jpg/500px-20042017_-_Rodoferrovi%C3%A1ria_de_Curitiba.jpg',
@@ -83,7 +99,8 @@ const LANDMARKS: Landmark[] = [
     carDist: '1,8 km',
   },
   {
-    category: '🏙 Centro',
+    category: 'Centro',
+    categoryIcon: 'city',
     title: 'Centro de Curitiba',
     desc: 'Acesso rápido ao centro comercial e financeiro da cidade.',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Vista_Interna_da_Rua_24_Horas%2C_Curitiba_%28BRA%29.png/500px-Vista_Interna_da_Rua_24_Horas%2C_Curitiba_%28BRA%29.png',
@@ -112,7 +129,9 @@ export default function Localizacao() {
         </div>
 
         <div className="flex overflow-x-auto pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-x-visible sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 scrollbar-none snap-x snap-mandatory">
-          {LANDMARKS.map((item) => (
+          {LANDMARKS.map((item) => {
+            const CategoryIcon = CATEGORY_ICONS[item.categoryIcon]
+            return (
             <div
               key={item.title}
               className="flex-shrink-0 w-[300px] sm:w-auto bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col justify-between group snap-start hover:shadow-md transition-shadow"
@@ -125,7 +144,8 @@ export default function Localizacao() {
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                  <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full inline-flex items-center gap-1.5">
+                    <CategoryIcon size={12} className="text-white" />
                     {item.category}
                   </div>
                 </div>
@@ -140,14 +160,14 @@ export default function Localizacao() {
 
               <div className="p-5 pt-4 mt-4 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500 font-medium">
                 <div className="flex items-center gap-1.5" title="Tempo a pé">
-                  <span aria-hidden>🚶</span>
+                  <IconWalk size={14} className="text-primary" />
                   <span>
                     {item.walkTime}{' '}
                     <span className="text-gray-300 font-normal">({item.walkDist})</span>
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5" title="Tempo de carro">
-                  <span aria-hidden>🚗</span>
+                  <IconCar size={14} className="text-primary" />
                   <span>
                     {item.carTime}{' '}
                     <span className="text-gray-300 font-normal">({item.carDist})</span>
@@ -155,7 +175,8 @@ export default function Localizacao() {
                 </div>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
 
         <div className="text-center mt-10">
@@ -168,7 +189,8 @@ export default function Localizacao() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
           >
-            📍 Ver localização no Google Maps
+            <IconMapPin size={18} />
+            Ver localização no Google Maps
           </a>
         </div>
       </div>
