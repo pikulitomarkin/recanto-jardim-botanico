@@ -3,8 +3,8 @@
 export const BRAND_NAME = 'Recanto Jardim Botânico'
 export const BRAND_SLOGAN = 'Qualidade que Acolhe'
 
-export const WHATSAPP_NUMBER = '5541995016899'
-export const WHATSAPP_DISPLAY = '(41) 99501-6899'
+export const WHATSAPP_NUMBER = '5541996646670'
+export const WHATSAPP_DISPLAY = '(41) 99664-6670'
 
 export const INSTAGRAM_HANDLE = '@recantojardimbotanico_'
 export const INSTAGRAM_URL = 'https://instagram.com/recantojardimbotanico_'

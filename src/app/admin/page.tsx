@@ -802,7 +802,7 @@ function GeralTab({ token }: { token: string }) {
             value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-            placeholder="5541995016899"
+            placeholder="5541996646670"
           />
         </div>
 

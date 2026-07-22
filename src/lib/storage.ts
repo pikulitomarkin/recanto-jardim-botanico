@@ -379,7 +379,7 @@ const DEFAULT_CONFIG: SiteConfig = {
         'Não. Para garantir a segurança, privacidade e tranquilidade dos moradores, não é permitida a entrada de visitantes.',
     },
   ],
-  whatsappDefault: '5541995016899',
+  whatsappDefault: '5541996646670',
   adminPasswordHash: process.env.ADMIN_PASSWORD_HASH || '',
 }
 
