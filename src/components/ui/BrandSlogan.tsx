@@ -1,4 +1,5 @@
 import { BRAND_SLOGAN } from '@/lib/brand'
+import { IconAvailable, IconHandsHeart } from '@/components/ui/Icons'
 
 interface BrandSloganProps {
   className?: string
@@ -8,9 +9,9 @@ interface BrandSloganProps {
 }
 
 const SIZE = {
-  sm: { icon: 'text-sm', text: 'text-xs' },
-  md: { icon: 'text-base', text: 'text-sm' },
-  lg: { icon: 'text-xl', text: 'text-base' },
+  sm: { icon: 14, text: 'text-xs' },
+  md: { icon: 16, text: 'text-sm' },
+  lg: { icon: 20, text: 'text-base' },
 }
 
 /** Slogan oficial com símbolo das mãos em coração (amarelo/dourado). */
@@ -23,10 +24,8 @@ export default function BrandSlogan({
   const s = SIZE[size]
   return (
     <span className={`inline-flex items-center gap-1.5 ${className}`}>
-      {showDot && <span className="text-green-500" aria-hidden>🟢</span>}
-      <span className={`${s.icon} leading-none`} style={{ color: '#C9A227' }} aria-hidden>
-        🤝
-      </span>
+      {showDot && <IconAvailable size={8} className="text-green-500" />}
+      <IconHandsHeart size={s.icon} className="text-[#C9A227]" />
       <span className={`font-medium ${s.text} ${textClassName || 'text-gold'}`}>
         {BRAND_SLOGAN}
       </span>

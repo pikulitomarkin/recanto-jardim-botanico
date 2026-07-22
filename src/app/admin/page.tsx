@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { getDriveThumbnailUrl } from '@/lib/gdrive.client'
 import { Room, Facility, RoomStatus } from '@/types'
+import { IconCheck, IconGear } from '@/components/ui/Icons'
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
@@ -416,7 +417,8 @@ function QuartosTab({ token }: { token: string }) {
           onClick={handleResetMapping}
           className="flex items-center gap-2 bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
         >
-          ⚙️ Atualizar Mapeamento (Tabela de 22 Quartos)
+          <IconGear size={16} />
+          Atualizar Mapeamento (Tabela de 22 Quartos)
         </button>
         <button
           onClick={() => setModal({})}
@@ -474,13 +476,14 @@ function QuartosTab({ token }: { token: string }) {
                         <button
                           onClick={() => handleSetStatus(room, 'available')}
                           disabled={room.status === 'available'}
-                          className={`text-xs font-semibold px-2.5 py-1 rounded-full border transition-all ${
+                          className={`text-xs font-semibold px-2.5 py-1 rounded-full border transition-all inline-flex items-center gap-1 ${
                             room.status === 'available'
                               ? 'bg-green-500 text-white border-green-500 cursor-default'
                               : 'text-green-600 border-green-400 hover:bg-green-50'
                           }`}
                         >
-                          ✓ Disponível
+                          <IconCheck size={12} />
+                          Disponível
                         </button>
                         <button
                           onClick={() => handleSetStatus(room, 'occupied')}

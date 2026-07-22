@@ -3,6 +3,7 @@ import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import BrandSlogan from '@/components/ui/BrandSlogan'
+import { IconCheck, PARKING_ICONS } from '@/components/ui/Icons'
 import { PARKING, WA } from '@/lib/brand'
 
 const BLOCKS: { title: string; body: ReactNode; highlight?: boolean }[] = [
@@ -88,7 +89,7 @@ const BLOCKS: { title: string; body: ReactNode; highlight?: boolean }[] = [
           'Uso das áreas comuns',
         ].map((item) => (
           <li key={item} className="flex items-center gap-2 text-sm text-gray-700">
-            <span className="text-green-600 font-bold">✔</span>
+            <IconCheck size={16} className="text-green-600" />
             {item}
           </li>
         ))}
@@ -101,14 +102,18 @@ const BLOCKS: { title: string; body: ReactNode; highlight?: boolean }[] = [
       <div>
         <p className="mb-4">O estacionamento é opcional.</p>
         <ul className="space-y-3">
-          {PARKING.map((item) => (
+          {PARKING.map((item) => {
+            const ParkingIcon = PARKING_ICONS[item.icon]
+            return (
             <li key={item.label} className="text-sm">
-              <span className="font-semibold text-gray-900">
-                {item.icon} {item.label}
+              <span className="font-semibold text-gray-900 inline-flex items-center gap-2">
+                <ParkingIcon size={16} className="text-primary" />
+                {item.label}
               </span>
-              <span className="block text-primary mt-0.5">{item.price}</span>
+              <span className="block text-primary mt-0.5 pl-6">{item.price}</span>
             </li>
-          ))}
+            )
+          })}
         </ul>
       </div>
     ),
@@ -187,7 +192,7 @@ export default function InformacoesPage() {
             <p className="text-white/70 text-sm mb-6">
               Agora só falta conhecer o Recanto pessoalmente.
             </p>
-            <WhatsAppButton href={WA.duvidas} label="📲 Tirar dúvidas pelo WhatsApp" />
+            <WhatsAppButton href={WA.duvidas} label="Tirar dúvidas pelo WhatsApp" />
           </div>
         </div>
       </section>
