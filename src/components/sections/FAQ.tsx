@@ -23,7 +23,7 @@ const FAQ_ITEMS = [
   {
     question: 'Existe estacionamento?',
     answer:
-      'Sim. O Recanto oferece: 🚗 Vaga descoberta para carro — R$ 250,00 por mês. 🏍 Vaga coberta para moto — R$ 150,00 por mês. 🚲 Bicicletário gratuito para moradores.',
+      'Sim. O Recanto oferece: vaga descoberta para carro (R$ 250,00 por mês), vaga coberta para moto (R$ 150,00 por mês) e bicicletário gratuito para moradores.',
   },
   {
     question: 'Posso receber visitantes?',
@@ -144,7 +144,7 @@ export default function FAQ() {
           </p>
           <WhatsAppButton
             href={WA.visita}
-            label="📲 Agendar minha visita pelo WhatsApp"
+            label="Agendar minha visita pelo WhatsApp"
           />
         </div>
       </div>

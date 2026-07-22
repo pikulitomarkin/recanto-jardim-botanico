@@ -1,4 +1,5 @@
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { IconCheck } from '@/components/ui/Icons'
 import { WA } from '@/lib/brand'
 
 const EXCLUSIVO = ['Seu quarto', 'Sua cama', 'Seu armário', 'Sua privacidade']
@@ -34,7 +35,7 @@ export default function MoradiaCompartilhada() {
             <ul className="space-y-2.5">
               {EXCLUSIVO.map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
-                  <span className="text-green-600 font-bold">✔</span>
+                  <IconCheck size={16} className="text-green-600" />
                   {item}
                 </li>
               ))}
@@ -47,7 +48,7 @@ export default function MoradiaCompartilhada() {
             <ul className="space-y-2.5">
               {COMPARTILHA.map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
-                  <span className="text-green-600 font-bold">✔</span>
+                  <IconCheck size={16} className="text-green-600" />
                   {item}
                 </li>
               ))}
@@ -56,7 +57,7 @@ export default function MoradiaCompartilhada() {
         </div>
 
         <div className="text-center">
-          <WhatsAppButton href={WA.conhecer} label="📲 Quero conhecer o Recanto" />
+          <WhatsAppButton href={WA.conhecer} label="Quero conhecer o Recanto" />
         </div>
       </div>
     </section>

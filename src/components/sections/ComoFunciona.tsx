@@ -1,4 +1,5 @@
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { IconCheck } from '@/components/ui/Icons'
 import { WA } from '@/lib/brand'
 
 const ETAPAS = [
@@ -74,7 +75,7 @@ export default function ComoFunciona() {
           <ul className="space-y-2.5 mb-6">
             {IMPORTANTES.map((item) => (
               <li key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
-                <span className="text-green-600 font-bold flex-shrink-0">✔</span>
+                <IconCheck size={16} className="text-green-600 mt-0.5" />
                 {item}
               </li>
             ))}
@@ -82,7 +83,10 @@ export default function ComoFunciona() {
 
           <div className="bg-white border border-gray-100 rounded-xl p-4 mb-5">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <span className="font-semibold text-gray-900">✔ Taxa de ingresso de R$ 350,00.</span>
+              <span className="font-semibold text-gray-900 inline-flex items-center gap-1.5">
+                <IconCheck size={16} className="text-green-600" />
+                Taxa de ingresso de R$ 350,00.
+              </span>
               <br />
               Sendo:
             </p>
@@ -100,7 +104,11 @@ export default function ComoFunciona() {
 
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
             <p className="text-sm text-amber-900 leading-relaxed">
-              <span className="font-bold">✔ Período de adaptação de 48 horas</span>, conforme
+              <span className="font-bold inline-flex items-center gap-1.5">
+                <IconCheck size={16} className="text-amber-700" />
+                Período de adaptação de 48 horas
+              </span>
+              , conforme
               previsto em contrato. Um dos maiores diferenciais do Recanto: mais segurança para o
               novo morador conhecer a rotina da residência.
             </p>
@@ -108,7 +116,7 @@ export default function ComoFunciona() {
         </div>
 
         <div className="text-center">
-          <WhatsAppButton href={WA.visita} label="📲 Agendar minha visita" />
+          <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
         </div>
       </div>
     </section>

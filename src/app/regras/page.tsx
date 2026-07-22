@@ -2,6 +2,7 @@ import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import BrandSlogan from '@/components/ui/BrandSlogan'
+import { IconCheck, IconDocument } from '@/components/ui/Icons'
 import { WA } from '@/lib/brand'
 
 const BLOCKS = [
@@ -66,7 +67,7 @@ export default function RegrasPage() {
                 <ul className="space-y-3">
                   {block.items.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
-                      <span className="text-green-600 font-bold flex-shrink-0">✔</span>
+                      <IconCheck size={16} className="text-green-600 mt-0.5" />
                       {item}
                     </li>
                   ))}
@@ -98,7 +99,8 @@ export default function RegrasPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm"
               >
-                📄 Consultar Regulamento Completo
+                <IconDocument size={16} />
+                Consultar Regulamento Completo
               </a>
             </div>
           </div>
@@ -113,7 +115,7 @@ export default function RegrasPage() {
             <p className="text-white/70 text-sm mb-6">
               Agende uma visita e conheça o Recanto pessoalmente.
             </p>
-            <WhatsAppButton href={WA.visita} label="📲 Agendar minha visita" />
+            <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
           </div>
         </div>
       </section>

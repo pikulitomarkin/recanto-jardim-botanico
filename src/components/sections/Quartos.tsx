@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import RoomCard from '@/components/ui/RoomCard'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import BrandSlogan from '@/components/ui/BrandSlogan'
+import { IconCheck, IconHome, PARKING_ICONS } from '@/components/ui/Icons'
 import type { Room } from '@/types'
 import {
   ROOM_CATEGORIES,
@@ -70,7 +71,7 @@ export default function Quartos() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {IMPORTANTES.map((item) => (
               <div key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
-                <span className="text-green-600 font-bold flex-shrink-0">✔</span>
+                <IconCheck size={16} className="text-green-600" />
                 <span>{item}</span>
               </div>
             ))}
@@ -105,7 +106,7 @@ export default function Quartos() {
                 <p className="text-gray-500 mb-4">
                   No momento não há quartos disponíveis nesta categoria.
                 </p>
-                <WhatsAppButton href={WA.visita} label="📲 Consultar disponibilidade" />
+                <WhatsAppButton href={WA.visita} label="Consultar disponibilidade" />
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -128,8 +129,9 @@ export default function Quartos() {
                   key={cat.id}
                   className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col hover:shadow-md transition-shadow"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2">
-                    🏠 {cat.name}
+                  <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 inline-flex items-center gap-1.5">
+                    <IconHome size={14} className="text-primary" />
+                    {cat.name}
                   </p>
                   <p className="text-2xl font-bold text-gray-900 mb-1">
                     {formatCurrency(cat.price)}
@@ -162,19 +164,23 @@ export default function Quartos() {
             O Recanto também oferece vagas para moradores.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {PARKING.map((item) => (
+            {PARKING.map((item) => {
+              const ParkingIcon = PARKING_ICONS[item.icon]
+              return (
               <div key={item.label} className="bg-gray-50 rounded-xl p-4">
-                <p className="text-sm font-semibold text-gray-900 mb-1">
-                  {item.icon} {item.label}
+                <p className="text-sm font-semibold text-gray-900 mb-1 inline-flex items-center gap-2">
+                  <ParkingIcon size={16} className="text-primary" />
+                  {item.label}
                 </p>
                 <p className="text-sm text-primary font-medium">{item.price}</p>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
         <div className="text-center">
-          <WhatsAppButton href={WA.visita} label="📲 Agendar minha visita" />
+          <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
         </div>
       </div>
     </section>
