@@ -172,7 +172,7 @@ export default function Valores() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary">•</span>
-                  <span><span className="font-semibold text-gray-800">Permanência Mínima:</span> contrato mínimo de 3 meses.</span>
+                  <span><span className="font-semibold text-gray-800">Permanência Mínima:</span> contrato mínimo de 1 mês.</span>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,6 @@
 import Header from '@/components/sections/Header'
 import Hero from '@/components/sections/Hero'
+import MoradiaCompartilhada from '@/components/sections/MoradiaCompartilhada'
 import Diferenciais from '@/components/sections/Diferenciais'
 import Quartos from '@/components/sections/Quartos'
 import Estrutura from '@/components/sections/Estrutura'
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <Header />
       <Hero />
+      <MoradiaCompartilhada />
       <Diferenciais />
       <Quartos />
       <Estrutura />

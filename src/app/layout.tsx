@@ -11,9 +11,11 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Recanto Jardim Botânico — Moradia Compartilhada em Curitiba',
-  description: 'Moradia compartilhada para trabalhadores e estudantes no Jardim Botânico, Curitiba. Quartos individuais mobiliados a partir de R$1.100/mês com água, luz e internet inclusos. Agende sua visita!',
-  keywords: 'quarto para alugar Curitiba, quarto individual Curitiba, moradia compartilhada Curitiba, quarto para trabalhador Curitiba, quarto para estudante Curitiba, aluguel de quarto Jardim Botânico Curitiba, quarto mobiliado Curitiba, moradia compartilhada Jardim Botânico Curitiba',
+  title: 'Recanto Jardim Botânico — Qualidade que Acolhe | Moradia Compartilhada em Curitiba',
+  description:
+    'Moradia Compartilhada UNISSEX no Jardim Botânico, Curitiba. Quartos individuais mobiliados a partir de R$ 1.100,00/mês com água, luz, gás e internet inclusos. Sem caução. Agende sua visita!',
+  keywords:
+    'quarto para alugar Curitiba, quarto individual Curitiba, moradia compartilhada Curitiba, quarto para trabalhador Curitiba, quarto para estudante Curitiba, aluguel de quarto Jardim Botânico Curitiba, quarto mobiliado Curitiba, Recanto Jardim Botânico',
   icons: {
     icon: '/logo.png?v=2',
     shortcut: '/logo.png?v=2',

@@ -1,41 +1,71 @@
 'use client'
 
 import { useState } from 'react'
-
-const WA_VISITA = 'https://wa.me/5541999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20ao%20Recanto%20Jardim%20Bot%C3%A2nico.'
+import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { WA } from '@/lib/brand'
 
 const FAQ_ITEMS = [
   {
-    question: 'O quarto tem banheiro?',
-    answer: 'Não. Nossos quartos são individuais e privativos, mas os banheiros são compartilhados entre os moradores. São 8 banheiros no total, mantidos limpos e higienizados frequentemente.',
+    question: 'O quarto possui banheiro privativo?',
+    answer:
+      'Não. Cada morador possui seu quarto individual, porém os banheiros são compartilhados e recebem limpeza frequente para manter o ambiente organizado e agradável.',
   },
   {
-    question: 'Aceita casal?',
-    answer: 'Não. Todos os quartos são estritamente para uso individual, visando garantir a tranquilidade e privacidade de todos os moradores.',
+    question: 'O Recanto aceita casais?',
+    answer:
+      'Não. A residência é destinada exclusivamente para ocupação individual.',
   },
   {
-    question: 'Aceita pets?',
-    answer: 'Não. Para garantir o conforto e a tranquilidade de todos os moradores, não é permitida a presença de animais de estimação.',
+    question: 'O Recanto aceita animais de estimação?',
+    answer:
+      'Não. Atualmente não é permitida a permanência de animais na residência.',
   },
   {
-    question: 'Tem estacionamento?',
-    answer: 'Sim. Dispomos de estacionamento para carros e motos no local. Consulte a disponibilidade e os valores pelo WhatsApp.',
+    question: 'Existe estacionamento?',
+    answer:
+      'Sim. O Recanto oferece: 🚗 Vaga descoberta para carro — R$ 250,00 por mês. 🏍 Vaga coberta para moto — R$ 150,00 por mês. 🚲 Bicicletário gratuito para moradores.',
   },
   {
-    question: 'Recebe visitantes?',
-    answer: 'Sim, visitas são permitidas nas áreas comuns durante o dia. Para preservar a privacidade e o descanso dos moradores, a pernoite de visitantes não é permitida.',
+    question: 'Posso receber visitantes?',
+    answer:
+      'Não. Para garantir a segurança, privacidade e tranquilidade dos moradores, não é permitida a entrada de visitantes.',
   },
   {
-    question: 'Como funciona a locação?',
-    answer: 'Todo o processo é conduzido pelo WhatsApp — desde as fotos e apresentação do espaço até a documentação e assinatura do contrato. Simples, rápido e transparente.',
+    question: 'O aluguel já inclui água, energia, gás e internet?',
+    answer: 'Sim. Esses serviços já estão incluídos no valor do aluguel.',
   },
   {
-    question: 'Como funciona a visita?',
-    answer: 'As visitas ao Recanto são realizadas mediante agendamento prévio pelo WhatsApp. Entre em contato, escolha um horário e venha conhecer pessoalmente.',
+    question: 'É necessário pagar caução?',
+    answer: 'Não. O Recanto Jardim Botânico não exige caução.',
   },
   {
-    question: 'Como faço a reserva?',
-    answer: 'A reserva é feita diretamente com a gente pelo WhatsApp, após a visita e análise do perfil. Todas as condições são informadas no atendimento.',
+    question: 'Como funciona a taxa de ingresso?',
+    answer:
+      'Existe uma taxa única de R$ 350,00. Desse valor: R$ 250,00 destinam-se à limpeza, higienização e manutenção do quarto após o encerramento da locação; R$ 100,00 são reembolsáveis mediante devolução das chaves e entrega do quarto nas condições previstas.',
+  },
+  {
+    question: 'Existe período de adaptação?',
+    answer:
+      'Sim. O Recanto oferece um período de adaptação de 48 horas, conforme previsto em contrato. Esse é um dos diferenciais da residência.',
+  },
+  {
+    question: 'Como funciona o pagamento do aluguel?',
+    answer:
+      'O aluguel é pago antecipadamente. A locação possui natureza exclusivamente mensal. Não existe cobrança proporcional de aluguel durante o mês.',
+  },
+  {
+    question: 'Qual é a permanência mínima?',
+    answer: 'A permanência mínima é de 1 mês.',
+  },
+  {
+    question: 'Quem pode morar no Recanto?',
+    answer:
+      'O Recanto é destinado principalmente a trabalhadores e estudantes que procuram um ambiente organizado, limpo, seguro e tranquilo para morar.',
+  },
+  {
+    question: 'Como faço para conhecer o Recanto?',
+    answer:
+      'Basta entrar em contato pelo WhatsApp para agendar uma visita. Será um prazer apresentar a estrutura da residência e esclarecer todas as suas dúvidas.',
   },
 ]
 
@@ -71,7 +101,12 @@ export default function FAQ() {
             Perguntas Frequentes
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto text-base">
-            Transparência faz parte da nossa proposta. Tire suas dúvidas aqui.
+            Reunimos as dúvidas mais comuns para que você conheça melhor o funcionamento do
+            Recanto Jardim Botânico antes mesmo da sua visita.
+          </p>
+          <p className="text-primary text-sm font-medium mt-3">
+            Respondemos às principais dúvidas para que você conheça melhor a Qualidade que Acolhe
+            do Recanto Jardim Botânico.
           </p>
         </div>
 
@@ -88,43 +123,29 @@ export default function FAQ() {
                   className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left hover:bg-gray-50 transition-colors"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-sm font-semibold text-gray-900">
-                    {item.question}
-                  </span>
+                  <span className="text-sm font-semibold text-gray-900">{item.question}</span>
                   <ChevronIcon open={isOpen} />
                 </button>
                 <div
-                  style={{ maxHeight: isOpen ? '200px' : '0px' }}
+                  style={{ maxHeight: isOpen ? '320px' : '0px' }}
                   className="overflow-hidden transition-all duration-300 ease-in-out"
                 >
-                  <p className="px-6 pb-4 text-sm text-gray-600 leading-relaxed">
-                    {item.answer}
-                  </p>
+                  <p className="px-6 pb-4 text-sm text-gray-600 leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             )
           })}
         </div>
 
-        {/* CTA */}
         <div className="max-w-3xl mx-auto bg-primary rounded-2xl p-8 text-center shadow-lg shadow-primary/20">
-          <p className="text-white text-lg font-semibold mb-2">
-            Quer agendar uma visita?
-          </p>
+          <p className="text-white text-lg font-semibold mb-2">Pronto para conhecer o Recanto?</p>
           <p className="text-white/70 text-sm mb-6">
-            Venha conhecer o Recanto pessoalmente. Respondemos no WhatsApp na hora!
+            Será um prazer apresentar a residência e esclarecer suas dúvidas.
           </p>
-          <a
-            href={WA_VISITA}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3.5 rounded-full transition-colors shadow-lg shadow-green-900/30"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Agendar Visita pelo WhatsApp
-          </a>
+          <WhatsAppButton
+            href={WA.visita}
+            label="📲 Agendar minha visita pelo WhatsApp"
+          />
         </div>
       </div>
     </section>
