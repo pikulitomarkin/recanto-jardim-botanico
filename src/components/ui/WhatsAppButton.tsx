@@ -1,3 +1,4 @@
+import { IconWhatsApp } from '@/components/ui/Icons'
 import { WA } from '@/lib/brand'
 
 interface WhatsAppButtonProps {
@@ -23,7 +24,7 @@ const SIZES = {
 
 export default function WhatsAppButton({
   href = WA.visita,
-  label = '📲 Agendar minha visita',
+  label = 'Agendar minha visita',
   variant = 'primary',
   className = '',
   size = 'lg',
@@ -35,6 +36,7 @@ export default function WhatsAppButton({
       rel="noopener noreferrer"
       className={`inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-colors ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
     >
+      <IconWhatsApp size={size === 'lg' ? 20 : 16} />
       {label}
     </a>
   )

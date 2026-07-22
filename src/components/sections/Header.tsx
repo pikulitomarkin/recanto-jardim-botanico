@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import BrandSlogan from '@/components/ui/BrandSlogan'
+import { IconWhatsApp } from '@/components/ui/Icons'
 import { BRAND_NAME, NAV_LINKS, WA } from '@/lib/brand'
 
 const HEADER_LINKS = NAV_LINKS.filter((l) => l.label !== 'Home')
@@ -46,7 +47,8 @@ export default function Header() {
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors"
             >
-              📲 Agendar visita
+              <IconWhatsApp size={16} />
+              Agendar visita
             </a>
 
             <button
@@ -88,7 +90,8 @@ export default function Header() {
             rel="noopener noreferrer"
             className="mt-2 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors"
           >
-            📲 Agendar minha visita
+            <IconWhatsApp size={16} />
+            Agendar minha visita
           </a>
         </nav>
       </div>

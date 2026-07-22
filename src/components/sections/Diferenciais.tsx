@@ -128,7 +128,7 @@ export default function Diferenciais() {
         </div>
 
         <div className="text-center">
-          <WhatsAppButton href={WA.conhecer} label="📲 Quero conhecer o Recanto" variant="dark" />
+          <WhatsAppButton href={WA.conhecer} label="Quero conhecer o Recanto" variant="dark" />
         </div>
       </div>
     </section>

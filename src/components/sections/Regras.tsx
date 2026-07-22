@@ -1,4 +1,5 @@
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { IconCheck } from '@/components/ui/Icons'
 import { WA } from '@/lib/brand'
 
 const BLOCKS = [
@@ -58,7 +59,7 @@ export default function Regras() {
               <ul className="space-y-2.5">
                 {block.items.slice(0, 3).map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
-                    <span className="text-green-600 font-bold flex-shrink-0">✔</span>
+                    <IconCheck size={16} className="text-green-600" />
                     {item}
                   </li>
                 ))}
@@ -74,7 +75,7 @@ export default function Regras() {
           >
             Ver regras completas
           </a>
-          <WhatsAppButton href={WA.visita} label="📲 Agendar minha visita" className="align-middle" />
+          <WhatsAppButton href={WA.visita} label="Agendar minha visita" className="align-middle" />
         </div>
       </div>
     </section>

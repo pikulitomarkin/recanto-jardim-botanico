@@ -1,8 +1,19 @@
+'use client'
+
 import BrandSlogan from '@/components/ui/BrandSlogan'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { openMoradiaCompartilhada } from '@/lib/moradia'
 import { BRAND_NAME, WA } from '@/lib/brand'
 
 export default function Hero() {
+  function handleMoradiaClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    if (window.location.hash !== '#moradia-compartilhada') {
+      window.history.pushState(null, '', '#moradia-compartilhada')
+    }
+    openMoradiaCompartilhada()
+  }
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#061810] via-[#1B4D2E] to-[#040e08]">
       <div
@@ -37,13 +48,25 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm sm:max-w-none sm:w-auto">
-          <WhatsAppButton href={WA.visita} label="📲 Agendar minha visita" />
-          <a
-            href="#moradia-compartilhada"
+          <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
+          <button
+            type="button"
+            onClick={handleMoradiaClick}
             className="flex items-center justify-center gap-2 border border-white/30 hover:border-white/60 text-white font-semibold px-8 py-3.5 rounded-full transition-colors hover:bg-white/5"
+            aria-controls="moradia-compartilhada"
           >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
             O que é Moradia Compartilhada?
-          </a>
+          </button>
         </div>
       </div>
 
