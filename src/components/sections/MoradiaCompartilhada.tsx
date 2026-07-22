@@ -16,40 +16,31 @@ export default function MoradiaCompartilhada() {
   useEffect(() => {
     function expand() {
       setOpen(true)
-      requestAnimationFrame(() => {
-        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      })
     }
 
-    function onHash() {
-      if (window.location.hash === '#moradia-compartilhada') expand()
-    }
-
-    onHash()
-    window.addEventListener('hashchange', onHash)
     window.addEventListener(OPEN_MORADIA_EVENT, expand)
-    return () => {
-      window.removeEventListener('hashchange', onHash)
-      window.removeEventListener(OPEN_MORADIA_EVENT, expand)
-    }
+    return () => window.removeEventListener(OPEN_MORADIA_EVENT, expand)
   }, [])
+
+  useEffect(() => {
+    if (!open) return
+    // Aguarda o mount da seção antes de rolar
+    const id = window.requestAnimationFrame(() => {
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+    return () => window.cancelAnimationFrame(id)
+  }, [open])
+
+  // Não renderiza nada até o clique em "O que é Moradia Compartilhada?"
+  if (!open) return null
 
   return (
     <section
       ref={sectionRef}
       id="moradia-compartilhada"
-      className={`bg-white overflow-hidden transition-[padding] duration-300 ${
-        open ? 'py-20' : 'py-0'
-      }`}
-      aria-hidden={!open}
+      className="py-20 bg-white animate-fadeUp"
     >
-      <div
-        className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out ${
-          open
-            ? 'opacity-100 max-h-[2000px] translate-y-0'
-            : 'opacity-0 max-h-0 pointer-events-none -translate-y-2'
-        }`}
-      >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-primary mb-3">
             Conceito

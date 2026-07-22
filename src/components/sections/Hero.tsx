@@ -6,11 +6,7 @@ import { openMoradiaCompartilhada } from '@/lib/moradia'
 import { BRAND_NAME, WA } from '@/lib/brand'
 
 export default function Hero() {
-  function handleMoradiaClick(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault()
-    if (window.location.hash !== '#moradia-compartilhada') {
-      window.history.pushState(null, '', '#moradia-compartilhada')
-    }
+  function handleMoradiaClick() {
     openMoradiaCompartilhada()
   }
 
