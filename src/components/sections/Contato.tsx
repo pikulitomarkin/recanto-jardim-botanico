@@ -1,9 +1,20 @@
-const WHATSAPP_URL =
-  'https://wa.me/5541999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20ao%20Recanto%20Jardim%20Bot%C3%A2nico.'
+import BrandSlogan from '@/components/ui/BrandSlogan'
+import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import {
+  ADDRESS_CITY,
+  ADDRESS_LINE1,
+  ADDRESS_LINE2,
+  ADDRESS_NOTE,
+  BRAND_NAME,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  WA,
+  WHATSAPP_DISPLAY,
+} from '@/lib/brand'
 
-function WhatsAppIcon({ size = 5 }: { size?: number }) {
+function WhatsAppIcon() {
   return (
-    <svg className={`w-${size} h-${size}`} fill="currentColor" viewBox="0 0 24 24">
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   )
@@ -31,41 +42,39 @@ export default function Contato() {
     <section id="contato" className="py-20 bg-primary">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: logo / tagline */}
           <div>
             <div className="flex items-center gap-4 mb-6">
-              <img 
-                src="/logo.png" 
-                alt="Recanto Jardim Botânico" 
+              <img
+                src="/logo.png"
+                alt={BRAND_NAME}
                 className="w-16 h-16 rounded-full object-cover border border-white/20 flex-shrink-0"
               />
               <div>
-                <h3 className="text-white font-bold text-xl leading-tight">
-                  Recanto Jardim Botânico
+                <h3 className="text-white font-bold text-xl leading-tight uppercase tracking-wide">
+                  {BRAND_NAME}
                 </h3>
-                <p className="text-white/60 text-sm">Curitiba · PR</p>
+                <BrandSlogan size="sm" textClassName="text-[#C9A227]" />
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Pronto para dar o próximo passo?
+              Venha conhecer o Recanto Jardim Botânico
             </h2>
-            <p className="text-white/70 text-base leading-relaxed mb-6">
-              Entre em contato agora mesmo. Respondemos rapidamente e agendamos sua visita sem compromisso.
+            <p className="text-white/70 text-base leading-relaxed mb-3">
+              Será um prazer apresentar pessoalmente nossa estrutura e esclarecer todas as suas
+              dúvidas.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full transition-colors shadow-lg shadow-green-900/30 text-base mb-8"
-            >
-              <WhatsAppIcon size={5} />
-              Falar pelo WhatsApp
-            </a>
+            <p className="text-gold text-sm font-medium mb-6">
+              Será um prazer receber você. Qualidade que Acolhe.
+            </p>
+            <WhatsAppButton
+              href={WA.visita}
+              label="📲 Agendar minha visita pelo WhatsApp"
+              className="mb-8"
+            />
 
-            {/* Google Maps Integration */}
             <div className="rounded-2xl overflow-hidden border border-white/10 h-[220px] shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.812239474776!2d-49.244304624795325!3d-25.444583877553535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce4fa4c66ff73%3A0x8e8a609d6f30a2!2sJardim%20Bot%C3%A2nico%20de%20Curitiba!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.812239474776!2d-49.244304624795325!3d-25.444583877553535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce4fa4c66ff73%3A0x8e8a609d6f30a2!2sAv.%20Comendador%20Franco%2C%20553%20-%20Jardim%20Bot%C3%A2nico%2C%20Curitiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -77,54 +86,72 @@ export default function Contato() {
             </div>
           </div>
 
-          {/* Right: contact info */}
           <div className="space-y-4">
             <div className="bg-white/10 border border-white/10 rounded-2xl p-6 flex items-start gap-4 hover:bg-white/15 transition-colors">
               <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-green-400"><WhatsAppIcon size={5} /></span>
+                <span className="text-green-400">
+                  <WhatsAppIcon />
+                </span>
               </div>
               <div>
-                <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">WhatsApp</p>
+                <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">
+                  WhatsApp
+                </p>
                 <a
-                  href={WHATSAPP_URL}
+                  href={WA.visita}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-semibold text-base hover:text-gold transition-colors"
                 >
-                  (41) 99999-9999
+                  {WHATSAPP_DISPLAY}
                 </a>
-                <p className="text-white/50 text-xs mt-0.5">Resposta rápida · Seg a Dom</p>
+                <p className="text-white/50 text-xs mt-0.5">
+                  Atendimento rápido. Segunda a sábado.
+                </p>
               </div>
             </div>
 
             <div className="bg-white/10 border border-white/10 rounded-2xl p-6 flex items-start gap-4 hover:bg-white/15 transition-colors">
               <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-pink-400"><InstagramIcon /></span>
+                <span className="text-pink-400">
+                  <InstagramIcon />
+                </span>
               </div>
               <div>
-                <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">Instagram</p>
+                <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">
+                  Instagram
+                </p>
                 <a
-                  href="https://instagram.com/recantojardimbotanico_"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-semibold text-base hover:text-gold transition-colors"
                 >
-                  @recantojardimbotanico_
+                  {INSTAGRAM_HANDLE}
                 </a>
-                <p className="text-white/50 text-xs mt-0.5">Fotos e novidades</p>
+                <p className="text-white/50 text-xs mt-0.5">
+                  Acompanhe fotos, vídeos e novidades do Recanto Jardim Botânico.
+                </p>
               </div>
             </div>
 
             <div className="bg-white/10 border border-white/10 rounded-2xl p-6 flex items-start gap-4 hover:bg-white/15 transition-colors">
               <div className="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-gold"><MapPinIcon /></span>
+                <span className="text-gold">
+                  <MapPinIcon />
+                </span>
               </div>
               <div>
-                <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">Endereço</p>
-                <p className="text-white font-semibold text-base">
-                  Av. Comendador Franco, 553
+                <p className="text-white/50 text-xs uppercase tracking-widest mb-1 font-medium">
+                  Endereço
                 </p>
-                <p className="text-white/70 text-sm">Jardim Botânico, Curitiba – PR</p>
+                <p className="text-white font-semibold text-base">{ADDRESS_LINE1}</p>
+                <p className="text-white/70 text-sm">
+                  {ADDRESS_LINE2}
+                  <br />
+                  {ADDRESS_CITY}
+                </p>
+                <p className="text-white/50 text-xs mt-2">{ADDRESS_NOTE}</p>
               </div>
             </div>
           </div>

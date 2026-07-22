@@ -97,7 +97,7 @@ function RoomModal({ room, onSave, onClose }: RoomModalProps) {
       images: form.images ?? [],
       whatsappMsg:
         form.whatsappMsg ||
-        `Olá! Tenho interesse no ${form.name} (R$${form.price}/mês). Poderia me dar mais informações?`,
+        `Olá! Gostaria de conhecer o ${form.name} (R$${form.price}/mês). Poderia me dar mais informações?`,
       description: form.description ?? '',
       videoUrl: form.videoUrl ?? '',
       highlight: (form.highlight ?? '') as 'novo' | 'reformado' | '',
@@ -364,7 +364,7 @@ function QuartosTab({ token }: { token: string }) {
               name: existing.name.trim(),
               price,
               priceGroup: String(price),
-              whatsappMsg: `Olá! Tenho interesse no ${existing.name.trim()} (R$${price}/mês) no Jardim Botânico de Curitiba.`
+              whatsappMsg: `Olá! Gostaria de conhecer o ${existing.name.trim()} (R$${price}/mês) no Jardim Botânico de Curitiba.`
             })
           } else {
             const name = `Quarto ${num}`
@@ -375,7 +375,7 @@ function QuartosTab({ token }: { token: string }) {
               priceGroup: String(price),
               status: 'available',
               images: [],
-              whatsappMsg: `Olá! Tenho interesse no ${name} (R$${price}/mês) no Jardim Botânico de Curitiba.`,
+              whatsappMsg: `Olá! Gostaria de conhecer o ${name} (R$${price}/mês) no Jardim Botânico de Curitiba.`,
               description: 'Quarto individual mobiliado completo com cama de solteiro, guarda-roupa e escrivaninha.',
               videoUrl: '',
               highlight: ''
@@ -802,7 +802,7 @@ function GeralTab({ token }: { token: string }) {
             value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-            placeholder="5541999999999"
+            placeholder="5541995016899"
           />
         </div>
 
