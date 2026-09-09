@@ -113,7 +113,7 @@ const LANDMARKS: Landmark[] = [
 
 export default function Localizacao() {
   return (
-    <section id="localizacao-destaque" className="py-20 bg-gray-50 overflow-hidden">
+    <section id="localizacao" className="py-20 bg-gray-50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-primary mb-3">

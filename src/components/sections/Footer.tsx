@@ -9,7 +9,11 @@ import {
   ADDRESS_LINE2,
   BRAND_NAME,
   BRAND_SLOGAN,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
   NAV_LINKS,
+  WHATSAPP_DISPLAY,
+  WA,
 } from '@/lib/brand'
 
 export default function Footer() {
@@ -80,19 +84,32 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div className="sm:text-right">
-            <p className="text-white/70 text-sm mb-3">
-              Obrigado por visitar o site do {BRAND_NAME}. Esperamos receber você em breve.
-            </p>
-            <p className="text-white/40 text-xs leading-relaxed">
+          <div className="sm:text-right space-y-3">
+            <a
+              href={WA.principal}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-sm text-white/80 hover:text-[#C9A227] transition-colors"
+            >
+              WhatsApp {WHATSAPP_DISPLAY}
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-sm text-white/80 hover:text-[#C9A227] transition-colors"
+            >
+              Instagram {INSTAGRAM_HANDLE}
+            </a>
+            <p className="text-white/40 text-xs leading-relaxed pt-2">
               © {new Date().getFullYear()} {BRAND_NAME}
             </p>
-            <p className="text-white/30 text-xs mt-1">Todos os direitos reservados.</p>
+            <p className="text-white/30 text-xs">Todos os direitos reservados.</p>
           </div>
         </div>
 
         <div className="mt-10 pt-8 border-t border-white/10 text-center">
-          <p className="text-[#C9A227] text-sm font-medium mb-1 inline-flex items-center justify-center gap-1.5">
+          <p className="text-[#C9A227] text-sm font-medium italic mb-1 inline-flex items-center justify-center gap-1.5">
             <IconHandsHeart size={16} className="text-[#C9A227]" />
             {BRAND_SLOGAN}
           </p>

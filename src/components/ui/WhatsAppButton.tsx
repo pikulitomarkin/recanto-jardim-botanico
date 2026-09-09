@@ -23,8 +23,8 @@ const SIZES = {
 }
 
 export default function WhatsAppButton({
-  href = WA.visita,
-  label = 'Agendar minha visita',
+  href = WA.principal,
+  label = 'Fale pelo WhatsApp',
   variant = 'primary',
   className = '',
   size = 'lg',
