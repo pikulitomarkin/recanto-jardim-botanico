@@ -89,7 +89,7 @@ export default function MoradiaCompartilhada() {
         </div>
 
         <div className="text-center">
-          <WhatsAppButton href={WA.conhecer} label="Quero conhecer o Recanto" />
+          <WhatsAppButton href={WA.principal} label="Fale pelo WhatsApp" />
         </div>
       </div>
     </section>

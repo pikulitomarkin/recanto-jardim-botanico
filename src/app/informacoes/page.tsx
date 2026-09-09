@@ -35,22 +35,24 @@ const BLOCKS: { title: string; body: ReactNode; highlight?: boolean }[] = [
     ),
   },
   {
-    title: 'Taxa de ingresso',
+    title: 'Valores de entrada',
     body: (
       <div className="space-y-3">
         <p>
-          Existe uma taxa única de ingresso no valor de <strong>R$ 350,00</strong>, composta por
-          duas partes:
+          Além do primeiro mês de aluguel, a entrada é composta por:
         </p>
         <div className="bg-gray-50 rounded-xl p-4">
-          <p className="font-semibold text-gray-900 text-sm">Limpeza e manutenção — R$ 250,00</p>
+          <p className="font-semibold text-gray-900 text-sm">
+            Taxa Única de Higienização e Preparação — R$ 250,00
+          </p>
           <p className="text-sm text-gray-600 mt-1">
-            Destinados à limpeza, higienização e manutenção do quarto após o encerramento da
-            locação.
+            Limpeza, higienização e preparação do quarto.
           </p>
         </div>
         <div className="bg-gray-50 rounded-xl p-4">
-          <p className="font-semibold text-gray-900 text-sm">Valor reembolsável — R$ 100,00</p>
+          <p className="font-semibold text-gray-900 text-sm">
+            Depósito de chave — R$ 100,00 (reembolsável conforme condições)
+          </p>
           <p className="text-sm text-gray-600 mt-1">Este valor será devolvido ao morador mediante:</p>
           <ul className="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
             <li>devolução das chaves;</li>
@@ -58,7 +60,7 @@ const BLOCKS: { title: string; body: ReactNode; highlight?: boolean }[] = [
           </ul>
         </div>
         <p className="text-sm text-amber-800 bg-amber-50 border border-amber-100 rounded-lg p-3">
-          Importante: a taxa de ingresso <strong>não é caução</strong>. São conceitos diferentes.
+          Importante: <strong>não há caução de aluguel</strong>. São conceitos diferentes.
         </p>
       </div>
     ),

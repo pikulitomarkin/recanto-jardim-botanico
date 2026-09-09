@@ -1,18 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import RoomCard from '@/components/ui/RoomCard'
+import { useState } from 'react'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import BrandSlogan from '@/components/ui/BrandSlogan'
-import { IconCheck, IconHome, PARKING_ICONS } from '@/components/ui/Icons'
-import type { Room } from '@/types'
-import {
-  ROOM_CATEGORIES,
-  formatCurrency,
-  PARKING,
-  WA,
-  type RoomCategory,
-} from '@/lib/brand'
+import { IconCheck } from '@/components/ui/Icons'
+import { ROOM_CATEGORIES, formatCurrency, WA } from '@/lib/brand'
+import { briefingPhotos } from '@/lib/photos'
 
 const IMPORTANTES = [
   'Quartos individuais mobiliados.',
@@ -25,46 +18,28 @@ const IMPORTANTES = [
 ]
 
 export default function Quartos() {
-  const [rooms, setRooms] = useState<Room[]>([])
-  const [loading, setLoading] = useState(true)
-  const [activeCategory, setActiveCategory] = useState<RoomCategory | null>(null)
+  const [activeId, setActiveId] = useState(ROOM_CATEGORIES[0].id)
 
-  useEffect(() => {
-    fetch('/api/rooms')
-      .then((r) => r.json())
-      .then((data) => {
-        const all = (data.priceGroups ?? []).flatMap(
-          (group: { rooms: Room[] }) => group.rooms
-        ) as Room[]
-        // Não mostrar quartos alugados
-        setRooms(all.filter((room) => room.status !== 'occupied'))
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [])
-
-  const roomsInCategory = activeCategory
-    ? rooms.filter((room) => room.price === activeCategory.price)
-    : []
+  const active = ROOM_CATEGORIES.find((c) => c.id === activeId) ?? ROOM_CATEGORIES[0]
+  const photos = briefingPhotos(active.photoIndexes)
 
   return (
     <section id="quartos" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-primary mb-3">
-            Quartos
+            Showroom
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             Conheça os Quartos
           </h2>
-          <BrandSlogan className="justify-center mb-4" textClassName="text-primary" />
+          <BrandSlogan className="justify-center mb-4" textClassName="text-primary italic" />
           <p className="text-gray-500 max-w-2xl mx-auto text-base leading-relaxed">
-            Qualidade que Acolhe em cada detalhe. Escolha a categoria que cabe no seu orçamento.
+            Cinco categorias com fotos reais. Disponibilidade atual é confirmada pelo WhatsApp.
           </p>
         </div>
 
-        {/* Informações importantes */}
-        <div className="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 mb-10 shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 mb-10">
           <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">
             Informações importantes
           </h3>
@@ -78,109 +53,69 @@ export default function Quartos() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="flex justify-center py-16">
-            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-          </div>
-        ) : activeCategory ? (
-          <div className="mb-12">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-              <div>
-                <button
-                  onClick={() => setActiveCategory(null)}
-                  className="text-sm text-primary hover:underline mb-2 inline-flex items-center gap-1"
-                >
-                  ← Voltar às categorias
-                </button>
-                <h3 className="text-2xl font-bold text-gray-900">
-                  Categoria {activeCategory.name}
-                </h3>
-                <p className="text-gray-500 text-sm mt-1">
-                  A partir de {formatCurrency(activeCategory.price)}
-                </p>
-              </div>
-            </div>
-
-            {roomsInCategory.length === 0 ? (
-              <div className="text-center py-12 bg-white rounded-2xl border border-gray-100">
-                <p className="text-gray-500 mb-4">
-                  No momento não há quartos disponíveis nesta categoria.
-                </p>
-                <WhatsAppButton href={WA.visita} label="Consultar disponibilidade" />
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {roomsInCategory.map((room) => (
-                  <RoomCard
-                    key={room.id}
-                    room={room}
-                    categoryName={activeCategory.name}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-            {ROOM_CATEGORIES.map((cat) => {
-              const availableCount = rooms.filter((r) => r.price === cat.price).length
-              return (
-                <div
-                  key={cat.id}
-                  className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col hover:shadow-md transition-shadow"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 inline-flex items-center gap-1.5">
-                    <IconHome size={14} className="text-primary" />
-                    {cat.name}
-                  </p>
-                  <p className="text-2xl font-bold text-gray-900 mb-1">
-                    {formatCurrency(cat.price)}
-                  </p>
-                  <p className="text-xs text-gray-400 mb-3">Valor inicial</p>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-5">
-                    {cat.description}
-                  </p>
-                  <p className="text-xs text-gray-400 mb-4">
-                    {availableCount > 0
-                      ? `${availableCount} quarto${availableCount > 1 ? 's' : ''} disponível${availableCount > 1 ? 'is' : ''}`
-                      : 'Consulte disponibilidade'}
-                  </p>
-                  <button
-                    onClick={() => setActiveCategory(cat)}
-                    className="w-full bg-primary hover:bg-primary/90 text-white font-semibold px-4 py-3 rounded-full transition-colors text-sm"
-                  >
-                    {cat.buttonLabel}
-                  </button>
-                </div>
-              )
-            })}
-          </div>
-        )}
-
-        {/* Estacionamento */}
-        <div className="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 mb-10">
-          <h3 className="text-xl font-bold text-gray-900 mb-3">Estacionamento</h3>
-          <p className="text-sm text-gray-600 mb-5">
-            O Recanto também oferece vagas para moradores.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {PARKING.map((item) => {
-              const ParkingIcon = PARKING_ICONS[item.icon]
-              return (
-              <div key={item.label} className="bg-gray-50 rounded-xl p-4">
-                <p className="text-sm font-semibold text-gray-900 mb-1 inline-flex items-center gap-2">
-                  <ParkingIcon size={16} className="text-primary" />
-                  {item.label}
-                </p>
-                <p className="text-sm text-primary font-medium">{item.price}</p>
-              </div>
-              )
-            })}
-          </div>
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {ROOM_CATEGORIES.map((cat) => {
+            const selected = cat.id === activeId
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveId(cat.id)}
+                className={`px-4 py-2 text-sm font-semibold transition-colors border ${
+                  selected
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-primary/40'
+                }`}
+              >
+                {cat.name}
+                <span className="ml-2 opacity-80 font-normal">{formatCurrency(cat.price)}</span>
+              </button>
+            )
+          })}
         </div>
 
-        <div className="text-center">
-          <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
+        <div className="mb-8">
+          <div className="relative aspect-[16/10] sm:aspect-[21/9] overflow-hidden bg-gray-200 mb-4">
+            {photos[0] && (
+              <img
+                src={photos[0]}
+                alt={`Categoria ${active.name} — destaque`}
+                className="w-full h-full object-cover"
+              />
+            )}
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 sm:p-8">
+              <p className="text-[#C9A227] text-xs font-semibold uppercase tracking-widest mb-1">
+                Categoria
+              </p>
+              <h3 className="text-white text-2xl sm:text-3xl font-bold">
+                {active.name}
+                <span className="ml-3 text-lg sm:text-xl font-medium text-white/85">
+                  {formatCurrency(active.price)}/mês
+                </span>
+              </h3>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6">
+            {photos.map((src, i) => (
+              <div key={src} className="aspect-[4/3] overflow-hidden bg-gray-200">
+                <img
+                  src={src}
+                  alt={`${active.name} — foto ${i + 1}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
+
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-3xl mb-6">
+            {active.description}
+          </p>
+
+          <WhatsAppButton
+            href={WA.categoria(active.name, active.price)}
+            label="Fale pelo WhatsApp"
+          />
         </div>
       </div>
     </section>

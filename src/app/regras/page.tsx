@@ -115,7 +115,7 @@ export default function RegrasPage() {
             <p className="text-white/70 text-sm mb-6">
               Agende uma visita e conheça o Recanto pessoalmente.
             </p>
-            <WhatsAppButton href={WA.visita} label="Agendar minha visita" />
+            <WhatsAppButton href={WA.principal} label="Fale pelo WhatsApp" />
           </div>
         </div>
       </section>

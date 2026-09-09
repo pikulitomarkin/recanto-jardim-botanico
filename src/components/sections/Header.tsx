@@ -42,13 +42,13 @@ export default function Header() {
 
           <div className="flex items-center gap-3">
             <a
-              href={WA.visita}
+              href={WA.principal}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors"
             >
               <IconWhatsApp size={16} />
-              Agendar visita
+              Fale pelo WhatsApp
             </a>
 
             <button
@@ -85,13 +85,13 @@ export default function Header() {
             </a>
           ))}
           <a
-            href={WA.visita}
+            href={WA.principal}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors"
           >
             <IconWhatsApp size={16} />
-            Agendar minha visita
+            Fale pelo WhatsApp
           </a>
         </nav>
       </div>
